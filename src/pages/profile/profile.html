@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Profile</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+<ion-list *ngIf="user" >
+  <ion-item>
+    <ion-thumbnail  item-left>
+        <img src={{user.avatar_url}}>
+    </ion-thumbnail>
+  </ion-item>
+  <ion-item>
+    <ion-label floating>Username</ion-label>
+    <ion-input type="text" readonly="true" value="{{user.login}}" ></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label floating>Name</ion-label>
+    <ion-input type="text"  value="{{user.name}}"></ion-input>
+  </ion-item>
+
+   <ion-item>
+    <ion-label floating>Email</ion-label>
+    <ion-input type="text" value="{{user.email}}"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label floating>Company</ion-label>
+    <ion-input type="text" value="{{user.company}}"></ion-input>
+  </ion-item>
+
+</ion-list>
+</ion-content>

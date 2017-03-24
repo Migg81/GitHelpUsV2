@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button item-left  (click)="closeModal()">
+       <ion-icon name="arrow-dropleft"></ion-icon>
+    </button>
+    <ion-title>Git Branch</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+    <ion-card>
+      <ion-card-title padding>
+         Git
+      </ion-card-title>
+      <ion-card-content>
+        <p>
+          Git is the most popular version control system that developers use to track and share code. These courses will take you from a complete beginner to proficiency using Git and GitHub. 
+          Git falls under distributed version control system.
+        </p>
+        <h2>Version Control System (VCS) </h2> 
+        <p>VCS is a software that helps software developers to work together and maintain a complete history of their work.</p>
+        </ion-card-content>
+      <ion-card-content>
+        <ion-list>Listed below are the functions of a VCS:
+            <ion-item> Allows developers to work simultaneously.</ion-item>
+            <ion-item>Does not allow overwriting each other’s changes.</ion-item>
+            <ion-item>Maintains a history of every version.</ion-item>
+        </ion-list>
+        <ion-list>Following are the types of VCS:
+          <ion-item>Centralized version control system (CVCS).</ion-item>
+          <ion-item>Distributed/Decentralized version control system (DVCS).</ion-item> 
+        </ion-list>
+      </ion-card-content>
+      <ion-item>
+      <button ion-button item-right clear color="dark" (click)="presentGitcBranchModal()">
+        <ion-icon name="md-more"></ion-icon>
+      </button>
+    </ion-item>
+    </ion-card>
+</ion-content>
