@@ -1,12 +1,6 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
-import { ViewController } from 'ionic-angular'
-/*
-  Generated class for the GitcBranch page.
+import { NavController, NavParams,ViewController } from 'ionic-angular';
 
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
 @Component({
   selector: 'page-gitc-branch',
   templateUrl: 'gitc-branch.html'

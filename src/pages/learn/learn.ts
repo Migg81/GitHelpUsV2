@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { ModalController } from 'ionic-angular';
-import { GitcBranchPage,GitclonePage } from '../modal-page/modal-pages';
+import { GitcBranchPage,GitclonePage,GitCommitPage,GitComparePage,GitInitPage,GitPullPage,GitPushPage,GitStatusPage,GitTrackingPage} from '../modal-page/modal-pages';
 
 /*
   Generated class for the Learn page.
@@ -30,6 +30,34 @@ export class LearnPage {
   }
   presentGitcloneModal() {
     let modal = this.modalCtrl.create(GitclonePage);
+    modal.present();
+  }
+  presentGitCommitModal() {
+    let modal = this.modalCtrl.create(GitCommitPage);
+    modal.present();
+  }
+  presentGitCompareModal() {
+    let modal = this.modalCtrl.create(GitComparePage);
+    modal.present();
+  }
+  presentGitInitModal() {
+    let modal = this.modalCtrl.create(GitInitPage);
+    modal.present();
+  }
+  presentGitPullPageModal() {
+    let modal = this.modalCtrl.create(GitPullPage);
+    modal.present();
+  }
+  presentGitPushModal() {
+    let modal = this.modalCtrl.create(GitcBranchPage);
+    modal.present();
+  }
+  presentGitStatusModal() {
+    let modal = this.modalCtrl.create(GitStatusPage);
+    modal.present();
+  }
+  presentGitTrackingModal() {
+    let modal = this.modalCtrl.create(GitTrackingPage);
     modal.present();
   }
 }
