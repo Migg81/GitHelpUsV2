@@ -1,13 +1,24 @@
 <ion-header>
-  <button ion-button item-left clear color="dark" (click)="closeModal()">
-       <ion-icon name="arrow-dropleft"></ion-icon>
-  </button>
   <ion-navbar>
-    <ion-title>Git Commit</ion-title>
+    <button ion-button item-left clear color="dark" (click)="closeModal()">
+        <ion-icon name="arrow-dropleft"></ion-icon>
+        <ion-title>Git Commit</ion-title>
+    </button>
   </ion-navbar>
 </ion-header>
 
-
-<ion-content padding>
-
+<ion-content >
+  <ion-item> 
+    <h2 color="code">Committing Your Changes</h2>
+    <p text-wrap>you can commit your changes. Remember that anything that is still unstaged – any files you have created or modified that you haven’t run git add on since you edited them – won’t go into this commit. They will stay as modified files on your disk. In this case, let’s say that the last time you ran git status, you saw that everything was staged, 
+      so you’re ready to commit your changes. The simplest way to commit is to type git commit:</p>
+  </ion-item>
+  <ion-item>
+    <h2 color="code">Commit</h2>
+    <ion-item-divider color="light">$ git commit</ion-item-divider>
+  </ion-item>
+  <ion-item>
+    <h2 color="code" text-wrap>Alternatively, you can type your commit message inline with the commit command by specifying it after a -m flag, like this:</h2>
+    <ion-item-divider color="light" text-wrap>$ git commit -m "Story 182: Fix benchmarks for speed"</ion-item-divider>
+  </ion-item>
 </ion-content>

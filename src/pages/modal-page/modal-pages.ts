@@ -9,3 +9,5 @@ export * from './git-pull';
 export * from './git-status';
 export * from './git-tracking';
 export * from './git-push';
+export * from './git-about';
+export * from './git-marge';

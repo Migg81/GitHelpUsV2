@@ -1,15 +1,26 @@
 <ion-header>
-
   <ion-navbar>
     <button ion-button item-left clear color="dark" (click)="closeModal()">
        <ion-icon name="arrow-dropleft"></ion-icon>
+       <ion-title>Git Pull</ion-title>
     </button>
-    <ion-title>git-Pull</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
-
+<ion-content>
+  <ion-item> 
+    <h2 color="code">Fetching and Pulling from Your Remotes</h2>
+    <p text-wrap>As you just saw, to get data from your remote projects, you can run:</p>
+  </ion-item>
+  <ion-item>
+    <h2 color="code">Git Pull</h2>
+    <ion-item-divider color="light">$ git fetch [remote-name]</ion-item-divider>
+  </ion-item>
+  <ion-item>
+    <p text-wrap>
+      The command goes out to that remote project and pulls down all the data from that remote project that you don’t have yet. After you do this, you should have references to all the branches from that remote, which you can merge in or inspect at any time.
+    </p>
+  </ion-item>
 </ion-content>

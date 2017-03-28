@@ -13,13 +13,13 @@
          <ion-icon color="header" name="logo-github" item-left large ></ion-icon>
       </ion-card-title>
       <ion-card-content>
-        <p>
+        <p text-wrap >
         Git is a free and open source distributed version control system designed to handle everything from small to very large projects with speed and efficiency.
         </p>
-        <p>A Git repository contains the history of a collection of files starting from a certain directory.Git is a distributed version control system. Every dev has a working copy of the code and full change history on their local machine</p>
+        <p text-wrap>A Git repository contains the history of a collection of files starting from a certain directory.Git is a distributed version control system. Every dev has a working copy of the code and full change history on their local machine</p>
         </ion-card-content>
         <ion-item>
-          <button ion-button item-right clear color="dark" (click)="presentGitcBranchModal()">
+          <button ion-button item-right clear color="dark" (click)="presentGitAboutModal()">
             <ion-icon name="md-more"></ion-icon>
           </button>
         </ion-item>
@@ -42,7 +42,7 @@
       </h2>
       <ion-item>
           <ion-icon color="code" name="ios-copy-outline" item-left large ></ion-icon>
-          <h3 color="code">$ git clone https://github.com/Example</h3>
+          <h3 color="code" text-wrap >$ git clone https://github.com/Example</h3>
           <button ion-button item-right clear color="dark" (click)="presentGitcloneModal()">
           <ion-icon name="md-more"></ion-icon>
         </button>
@@ -54,7 +54,7 @@
       </h2>
       <ion-item>
           <ion-icon color="code" name="ios-send-outline" item-left large ></ion-icon>
-          <h3 color="code">$ git push [remote-name] [branch-name]</h3>
+          <h3 color="code" text-wrap >$ git push [remote-name] [branch-name]</h3>
           <button ion-button item-right clear color="dark" (click)="presentGitPushModal()">
           <ion-icon name="md-more"></ion-icon>
         </button>
@@ -114,7 +114,7 @@
       </h2>
       <ion-item>
           <ion-icon color="code" name="ios-add-circle-outline" item-left large ></ion-icon>
-          <h3 color="code">$ git add Example-File-Name</h3>
+          <h3 color="code" text-wrap >$ git add Example-File-Name</h3>
           <button ion-button item-right clear color="dark" (click)="presentGitTrackingModal()">
           <ion-icon name="md-more"></ion-icon>
         </button>
@@ -151,7 +151,7 @@
       <ion-item>
           <ion-icon color="code" name="ios-git-merge-outline" item-left large ></ion-icon>
           <h3 color="code">$ git merge iss53</h3>
-          <button ion-button item-right clear color="dark" (click)="presentGitcBranchModal()">
+          <button ion-button item-right clear color="dark" (click)="presentGitcMargeModal()">
           <ion-icon name="md-more"></ion-icon>
         </button>
       </ion-item>

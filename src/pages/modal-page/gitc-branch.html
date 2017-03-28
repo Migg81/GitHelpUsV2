@@ -1,39 +1,61 @@
 <ion-header>
   <ion-navbar>
-    <button ion-button item-left  (click)="closeModal()">
-       <ion-icon name="arrow-dropleft"></ion-icon>
+    <button ion-button item-left clear color="dark"  (click)="closeModal()">
+      <ion-icon name="arrow-dropleft"></ion-icon>
+      <ion-title>Git Branch</ion-title>
     </button>
-    <ion-title>Git Branch</ion-title>
   </ion-navbar>
 </ion-header>
-<ion-content padding>
-    <ion-card>
-      <ion-card-title padding>
-         Git
-      </ion-card-title>
-      <ion-card-content>
-        <p>
-          Git is the most popular version control system that developers use to track and share code. These courses will take you from a complete beginner to proficiency using Git and GitHub. 
-          Git falls under distributed version control system.
-        </p>
-        <h2>Version Control System (VCS) </h2> 
-        <p>VCS is a software that helps software developers to work together and maintain a complete history of their work.</p>
-        </ion-card-content>
-      <ion-card-content>
-        <ion-list>Listed below are the functions of a VCS:
-            <ion-item> Allows developers to work simultaneously.</ion-item>
-            <ion-item>Does not allow overwriting each other’s changes.</ion-item>
-            <ion-item>Maintains a history of every version.</ion-item>
-        </ion-list>
-        <ion-list>Following are the types of VCS:
-          <ion-item>Centralized version control system (CVCS).</ion-item>
-          <ion-item>Distributed/Decentralized version control system (DVCS).</ion-item> 
-        </ion-list>
-      </ion-card-content>
-      <ion-item>
-      <button ion-button item-right clear color="dark" (click)="presentGitcBranchModal()">
-        <ion-icon name="md-more"></ion-icon>
-      </button>
-    </ion-item>
-    </ion-card>
+
+<ion-content >
+  <ion-item> 
+    <h2 color="code">Git Branching</h2>
+    <p text-wrap>Nearly every VCS has some form of branching support. Branching means you diverge from the main line of development and continue to do work without messing with that main line. In many VCS tools, this is a somewhat expensive process, often requiring you to create a new copy of your source code directory, 
+      which can take a long time for large projects.</p>
+  </ion-item>
+  <ion-item>
+    <h2 color="code">Creating a New Branch</h2>
+    <ion-item-divider color="light">$ git branch testing</ion-item-divider>
+  </ion-item>
+  <ion-item>
+    <h2 color="code">Switching Branches</h2>
+    <p text-wrap>To switch to an existing branch, you run the git checkout command. Let’s switch to the new testing branch:</p>
+    <ion-item-divider color="light">$ git checkout testing</ion-item-divider>
+  </ion-item>
+  <ion-item> 
+    <h2 color="code" text-wrap>Add a new remote for your branch</h2>
+    <ion-item-divider color="light">$ git remote add [name_of_your_remote]</ion-item-divider>
+  </ion-item>
+  <ion-item> 
+    <h2 color="code" text-wrap>Push changes from your commit into your branch</h2>
+    <ion-item-divider text-wrap color="light">$ git push [name_of_your_new_remote] [name_of_your_branch]</ion-item-divider>
+  </ion-item>
+  <ion-item> 
+    <h2 color="code" text-wrap>Update your branch when the original branch from official repository has been updated</h2>
+    <ion-item-divider text-wrap color="light">$ git fetch [name_of_your_remote]</ion-item-divider>
+  </ion-item>
+  <ion-item> 
+    <h2 color="code" text-wrap>Then you need to apply to merge changes, if your branch is derivated from develop you need to do</h2>
+    <ion-item-divider text-wrap color="light">$ git merge [name_of_your_remote]/develop</ion-item-divider>
+  </ion-item>
+  <ion-item> 
+    <h2 color="code" text-wrap>Delete a branch on your local filesystem</h2>
+    <ion-item-divider text-wrap color="light">$ git branch -d [name_of_your_new_branch]</ion-item-divider>
+  </ion-item>
+  <ion-item> 
+    <h2 color="code" text-wrap>To force the deletion of local branch on your filesystem </h2>
+    <ion-item-divider text-wrap color="light">$ git branch -D [name_of_your_new_branch]</ion-item-divider>
+  </ion-item>
+  <ion-item> 
+    <h2 color="code">Delete the branch on github</h2>
+    <ion-item-divider text-wrap color="light">$ git push origin :[name_of_your_new_branch]</ion-item-divider>
+  </ion-item>
+  <ion-item> 
+    <h2 color="code">Git Checkout</h2>
+    <p text-wrap>Updates files in the working tree to match the version in the index or the specified tree. If no paths are given, git checkout will also update HEAD to set the specified branch as the current branch.</p>
+  </ion-item>
+  <ion-item>
+    <h2 color="code">Checkout</h2>
+    <ion-item-divider color="light">$ git checkout branch name</ion-item-divider>
+  </ion-item>
 </ion-content>
