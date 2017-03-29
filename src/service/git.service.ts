@@ -1,5 +1,5 @@
 import { Injectable }    from '@angular/core';
-import { Headers, Http } from '@angular/http';
+import { Headers, Http ,RequestOptions} from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/catch';
@@ -12,7 +12,7 @@ export class GitService {
   private headers = new Headers({'Content-Type': 'application/json'});
   private gitApIUrl = 'https://api.github.com/';  // URL to web api
   constructor(private http: Http) { }
-
+  user:Iuser;
   getUsers(username:string): Promise<Iuser> {
     var getuserUrl=this.gitApIUrl+"users/"+username;
     return this.http.get(getuserUrl)
@@ -36,6 +36,30 @@ export class GitService {
   private handleError(error: any): Promise<any> {
     console.error('An error occurred', error); // for demo purposes only
     return Promise.reject(error.message || error);
+  }
+
+  public updateUser(user: any,username:string,pswd:string): Observable<Iuser> {
+    
+    let updateUserUrl=this.gitApIUrl +"user"
+    var credentials = btoa(username + ':' + pswd);
+    let headers = new Headers({ 'Content-Type': 'application/json'});
+    headers.append('Authorization', 'Basic ' + credentials);
+    let options = new RequestOptions({ headers: headers });
+    
+
+    return this.http.patch(
+      updateUserUrl, 
+      JSON.stringify(
+        {
+          name: user.name,
+          email:user.email,
+          location:user.location,
+          bio:user.bio,
+          company:user.company
+        }), 
+      options)
+        .map(this.extractData)
+        .catch(this.handleError);
   }
 
 }

@@ -7,8 +7,8 @@
 <ion-header>
   <ion-navbar>
     <ion-title>Edit Profile</ion-title>
-    <ion-buttons end>
-      <button ion-button (click)="editProfile()">
+    <ion-buttons class="iconPaddingRight" end>
+      <button ion-button icon-only  outline large  clear (click)="editProfile()">
        <ion-icon name="md-checkmark-circle-outline" large> </ion-icon>
       </button>
     </ion-buttons>
@@ -19,9 +19,11 @@
 <ion-list *ngIf="user" >
   <ion-item>
     <ion-thumbnail  item-left>
-        <img src={{user.avatar_url}}>
+      <img src={{user.avatar_url}} >
     </ion-thumbnail>
-    <ion-icon item-right name="camera" class="iconSize"></ion-icon>
+    <button ion-button icon-only  outline large  clear color="dark" >  
+      <ion-icon name="ios-camera-outline"  (click)="takePicture()" ></ion-icon>
+    </button>
   </ion-item>
   <ion-item>
     <ion-label floating>Username</ion-label>
@@ -30,17 +32,27 @@
 
   <ion-item>
     <ion-label floating>Name</ion-label>
-    <ion-input type="text" readonly="true" value="{{user.name}}"></ion-input>
+    <ion-input type="text"  [(ngModel)]="user.name"></ion-input>
   </ion-item>
 
    <ion-item>
     <ion-label floating>Email</ion-label>
-    <ion-input type="text" readonly="true" value="{{user.email}}"></ion-input>
+    <ion-input type="text"  [(ngModel)]="user.email"></ion-input>
   </ion-item>
 
   <ion-item>
     <ion-label floating>Company</ion-label>
-    <ion-input type="text" readonly="true" value="{{user.company}}"></ion-input>
+    <ion-input type="text"  [(ngModel)]='user.company'></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label floating>Location</ion-label>
+    <ion-input type="text"  [(ngModel)]="user.location"></ion-input>
+  </ion-item>
+  
+  <ion-item>
+    <ion-label floating>Bio</ion-label>
+    <ion-textarea [(ngModel)]="user.bio"></ion-textarea>
   </ion-item>
 
 </ion-list>
