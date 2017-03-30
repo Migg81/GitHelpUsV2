@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { NavController, NavParams } from 'ionic-angular';
 import { GitService } from '../../service/shared';
+import { RepoSearchPage } from '../pages';
 
 @Component({
   selector: 'page-repositories',
@@ -54,5 +55,9 @@ export class repositories {
   ionViewDidLoad()
   {
     this.getRepoDetails();
+  }
+  searchRepo()
+  {
+    this.navCtrl.push(RepoSearchPage);
   }
 }

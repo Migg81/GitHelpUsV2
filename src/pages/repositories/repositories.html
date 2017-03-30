@@ -4,42 +4,46 @@
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>Repository</ion-title>
+    <ion-buttons padding-right end>
+      <button ion-button icon-only  outline large  clear (click)="searchRepo()">
+       <ion-icon name="search" large> </ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
-<ion-content *ngIf="repos">
-  <ion-list  *ngFor="let repo of repos">
-    <ion-card>
-      <ion-card-title padding>
-         {{repo.name}}
-      </ion-card-title>
-      <ion-card-content>
-        <p>
-        {{repo.description === null ? "Not Available" : repo.description}}
-        </p>
-      </ion-card-content>
-        <ion-row>
-          <ion-col>
-            <button ion-button icon-left clear small>
-              <ion-icon name="thumbs-up"></ion-icon>
-              <div>{{repo.watchers}} Watchers</div>
-            </button>
-          </ion-col>
-          <ion-col>
-            <button ion-button icon-left clear small>
-              <ion-icon name="text"></ion-icon>
-              <div>{{repo.open_issues}} Open Issues</div>
-            </button>
-          </ion-col>
-          <ion-col center text-center>
-            <ion-note>
-              {{repo.language}}
-            </ion-note>
-          </ion-col>
-        </ion-row>
-    </ion-card>
-  </ion-list>
-  <div *ngIf="selectedItem" padding>
-    You navigated here from <b>{{selectedItem.title}}</b>
-  </div>
+<ion-content>
+  <ion-item-group *ngIf="repos"> 
+    <ion-list  *ngFor="let repo of repos">
+      <ion-card>
+        <ion-card-title padding>
+          {{repo.name}}
+        </ion-card-title>
+        <ion-card-content>
+          <p>
+          {{repo.description === null ? "Not Available" : repo.description}}
+          </p>
+        </ion-card-content>
+          <ion-row>
+            <ion-col>
+              <button ion-button icon-left clear small>
+                <ion-icon name="thumbs-up"></ion-icon>
+                <div>{{repo.watchers}} Watchers</div>
+              </button>
+            </ion-col>
+            <ion-col>
+              <button ion-button icon-left clear small>
+                <ion-icon name="text"></ion-icon>
+                <div>{{repo.open_issues}} Open Issues</div>
+              </button>
+            </ion-col>
+            <ion-col center text-center>
+              <ion-note>
+                {{repo.language}}
+              </ion-note>
+            </ion-col>
+          </ion-row>
+      </ion-card>
+    </ion-list>
+  </ion-item-group>
 </ion-content>
