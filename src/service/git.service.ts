@@ -62,4 +62,11 @@ export class GitService {
         .catch(this.handleError);
   }
 
+  repoSearchByUsers(username:string): Observable<Iuser[]> {
+    var getuserUrl=this.gitApIUrl+"users/"+username+"/repos";
+    return this.http.get(getuserUrl)
+               .map(response => response.json())
+               .catch(this.handleError);
+  }
+
 }
