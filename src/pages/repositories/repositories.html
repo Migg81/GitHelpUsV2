@@ -23,6 +23,7 @@
           <p>
           {{repo.description === null ? "Not Available" : repo.description}}
           </p>
+          <p color="code">Language: {{repo.language}}</p>
         </ion-card-content>
           <ion-row>
             <ion-col>
@@ -36,11 +37,6 @@
                 <ion-icon name="text"></ion-icon>
                 <div>{{repo.open_issues}} Open Issues</div>
               </button>
-            </ion-col>
-            <ion-col center text-center>
-              <ion-note>
-                {{repo.language}}
-              </ion-note>
             </ion-col>
           </ion-row>
       </ion-card>

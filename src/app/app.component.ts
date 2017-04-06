@@ -1,9 +1,10 @@
 import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar, Splashscreen } from 'ionic-native';
-import { profile,LearnPage,repositories } from '../pages/pages';
+import { profile,LearnPage,repositories ,LoginPage  } from '../pages/pages';
 import { GitService } from '../service/shared';
 import { Iuser } from '../models/model';
+import { Storage } from '@ionic/storage';
 
 @Component({
   templateUrl: 'app.html'
@@ -11,7 +12,7 @@ import { Iuser } from '../models/model';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = LearnPage;
+  rootPage: any = LoginPage;
   user={};
 
   pages: Array<{title: string, component: any,icon:string}>;
@@ -47,6 +48,11 @@ export class MyApp {
     console.log(this.user);              
   }
 
+  logOut(){
+    localStorage.removeItem("currentUser");
+    this.nav.setRoot(LoginPage);
+  }
+  
   openPage(page) {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario

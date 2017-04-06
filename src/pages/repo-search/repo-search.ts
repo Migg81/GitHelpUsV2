@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-
+import { profile } from '../pages';
 import { Observable }        from 'rxjs/Observable';
 import { Subject }           from 'rxjs/Subject';
 // Observable class extensions
@@ -48,5 +48,9 @@ export class RepoSearchPage {
 
    repoSearch(term: string): void {
     this.searchTerms.next(term);
+  }
+
+  profileTapped(){
+    this.navCtrl.push(profile);
   }
 }

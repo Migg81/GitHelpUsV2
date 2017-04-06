@@ -10,9 +10,23 @@
           <p>{{user.name}}</p>
           <p>{{user.email}}</p>
         </ion-item>
-        <ion-item >
-          <button class="buttonNavPadding" ion-item *ngFor="let p of pages" (click)="openPage(p)" icon-left>
-            <ion-icon name={{p.icon}} item-left></ion-icon>
+        <!--<ion-item >
+          <button ion-item  icon-left class="buttonNavPadding" *ngFor="let p of pages" (click)="openPage(p)" >
+            <ion-icon name={{p.icon}} ></ion-icon>
+            {{p.title}}
+          </button>
+          <button ion-button icon-only icon-left  outline large  clear color="dark" class="buttonNavPadding"  >  
+            <ion-icon class="buttonNavPadding" name="ios-camera-outline"></ion-icon>LOgOUT
+          </button>ion-button icon-only  outline large  clear
+        </ion-item>-->
+        <ion-item class="item-icon-left" menu-close ng-click="login()"> 
+          <button ion-button icon-left clear outline class="logoutButtonSize" >
+            <ion-icon class="iconfrontSize" name="ios-camera-outline"></ion-icon>LOGOUT
+          </button>
+        </ion-item>
+        <ion-item>
+          <button ion-item menuClose icon-left class="buttonNavPadding" *ngFor="let p of pages" (click)="openPage(p)" >
+            <ion-icon class="iconLineHeight" name={{p.icon}} ></ion-icon>
             {{p.title}}
           </button>
         </ion-item>
