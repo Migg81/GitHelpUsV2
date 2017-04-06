@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-
-import { NavController } from 'ionic-angular';
+import { NavController ,NavParams} from 'ionic-angular';
 import { GitService } from '../../service/shared';
 import { Iuser } from '../../models/model';
 import { EditProfilePage } from '../pages';
+
 @Component({
   selector: 'page-profile',
   templateUrl: 'profile.html'
@@ -14,21 +14,26 @@ export class profile {
 
   constructor(
     public navCtrl: NavController,
-    public gitService:GitService) {
+    public gitService:GitService,
+    public param:NavParams) {
   }
 
-  getUsers() {
-    this.gitService.getUsers("migg81")
+  getUsers(usename:string) {
+    this.gitService.getUsers(usename)
     .then(response => {
        this.user=<Iuser>response;
     });      
   }
+
   ionViewDidLoad()
   {
-    this.getUsers();
+    var username=this.param.get("username")
+    this.getUsers(username);
   }
+
   editProfile()
   {
     this.navCtrl.push(EditProfilePage);
   }
+
 }

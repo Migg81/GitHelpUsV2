@@ -50,7 +50,7 @@ export class RepoSearchPage {
     this.searchTerms.next(term);
   }
 
-  profileTapped(){
-    this.navCtrl.push(profile);
+  profileTapped(username:string){
+    this.navCtrl.push(profile,{username:username});
   }
 }

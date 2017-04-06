@@ -12,7 +12,7 @@
           <ion-avatar item-left>
             <img src={{repo.owner.avatar_url}}>
           </ion-avatar>
-          <button ion-button icon-left clear small (click)="profileTapped()">
+          <button ion-button icon-left clear small (click)="profileTapped(repo.owner.login)">
             <h2>{{repo.owner.login}}</h2>
           </button>
         </ion-item>
