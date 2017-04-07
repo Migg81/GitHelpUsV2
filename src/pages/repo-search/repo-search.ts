@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams ,LoadingController} from 'ionic-angular';
 import { profile } from '../pages';
 import { Observable }        from 'rxjs/Observable';
 import { Subject }           from 'rxjs/Subject';
@@ -13,6 +13,7 @@ import 'rxjs/add/operator/switchMap';
 import { GitService } from '../../service/shared';
 import { Iuser } from '../../models/model';
 
+
 @Component({
   selector: 'page-repo-search',
   templateUrl: 'repo-search.html'
@@ -25,6 +26,7 @@ export class RepoSearchPage {
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
+    public loadCtrl: LoadingController,
     public gitService:GitService) {}
 
   ionViewDidLoad() {
@@ -38,7 +40,7 @@ export class RepoSearchPage {
         ? this.gitService.repoSearchByUsers(term)
         // or the observable of empty heroes if there was no search term
         : Observable.of<any[]>([]))
-      .catch(error => {
+        .catch(error => {
         // TODO: add real error handling
         console.log(error);
         return Observable.of<any[]>([]);
@@ -46,11 +48,19 @@ export class RepoSearchPage {
 
   }
 
-   repoSearch(term: string): void {
+  repoSearch(term: string): void {
+
+    let loader = this.loadCtrl.create({
+      content: 'Getting data...'
+    });
+
+    loader.present().then(() => {
     this.searchTerms.next(term);
+    loader.dismiss();
+    });
   }
 
   profileTapped(username:string){
-    this.navCtrl.push(profile,{username:username});
+    this.navCtrl.push(profile,{username:username});      
   }
 }

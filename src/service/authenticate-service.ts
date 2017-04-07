@@ -41,4 +41,11 @@ private handleError(error: any): Promise<any> {
     return Promise.reject(error.message || error);
 }
 
+ checkIfUserlogedIn():boolean{
+    if(localStorage.getItem("currentUser"))
+       return true;
+    else
+      return false;
+  }
+
 }

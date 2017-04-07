@@ -2,7 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar, Splashscreen } from 'ionic-native';
 import { profile,LearnPage,repositories ,LoginPage  } from '../pages/pages';
-import { GitService } from '../service/shared';
+import { GitService ,AuthenticateService} from '../service/shared';
 import { Iuser } from '../models/model';
 import { Storage } from '@ionic/storage';
 
@@ -19,7 +19,8 @@ export class MyApp {
 
   constructor(
               public platform: Platform,
-              public gitService:GitService) {
+              public gitService:GitService,
+              public authService:AuthenticateService) {
     this.initializeApp();
     // used for an example of ngFor and navigation
     this.pages = [
@@ -36,7 +37,12 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       StatusBar.styleDefault();
       Splashscreen.hide();
-      this.getUsers();
+      if(this.authService.checkIfUserlogedIn()){
+          this.getUsers();
+      }
+      else{
+          this.nav.setRoot(LoginPage);
+      }
     });
   }
 
@@ -52,7 +58,7 @@ export class MyApp {
     localStorage.removeItem("currentUser");
     this.nav.setRoot(LoginPage);
   }
-  
+
   openPage(page) {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario

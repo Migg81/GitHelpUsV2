@@ -4,8 +4,8 @@
         <ion-icon name="menu"></ion-icon>
       </button>
       <ion-title>Profile</ion-title>
-    <ion-buttons end>
-      <button padding-right ion-button icon-only clear outline large (click)="editProfile()">
+    <ion-buttons end *ngIf="isLoggedInuser">
+      <button icon-right ion-button icon-only clear outline large (click)="editProfile()">
         <ion-icon name="ios-create-outline" large></ion-icon>
       </button>
     </ion-buttons>
@@ -31,22 +31,22 @@
 
    <ion-item>
     <ion-label floating>Email</ion-label>
-    <ion-input type="text" readonly="true" value="{{user.email}}"></ion-input>
+    <ion-input type="text" readonly="true" value="{{user.email ?user.email :'No Information Available'}}"></ion-input>
   </ion-item>
 
   <ion-item>
     <ion-label floating>Company</ion-label>
-    <ion-input type="text" readonly="true" value="{{user.company}}"></ion-input>
+    <ion-input type="text" readonly="true" value="{{user.company?user.company :'No Information Available'}}"></ion-input>
   </ion-item>
 
   <ion-item>
     <ion-label floating>Location</ion-label>
-    <ion-input type="text" readonly="true" value="{{user.location}}"></ion-input>
+    <ion-input type="text" readonly="true" value="{{user.location?user.location :'No Information Available'}}"></ion-input>
   </ion-item>
   
   <ion-item>
     <ion-label floating>Bio</ion-label>
-    <ion-textarea text-wrap type="text" readonly="true" value="{{user.bio}}"></ion-textarea>
+    <ion-textarea text-wrap type="text" readonly="true" value="{{user.bio?user.bio:'No Information Available'}}"></ion-textarea>
   </ion-item>
 
 </ion-list>

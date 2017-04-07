@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { NavController, NavParams } from 'ionic-angular';
-import { GitService } from '../../service/shared';
-import { RepoSearchPage } from '../pages';
+import { NavController, NavParams ,LoadingController} from 'ionic-angular';
+import { GitService ,AuthenticateService} from '../../service/shared';
+import { RepoSearchPage,LoginPage } from '../pages';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'page-repositories',
@@ -19,30 +20,29 @@ export class repositories {
   constructor(
     public navCtrl: NavController, 
     public gitService:GitService,
-    public navParams: NavParams) {
-
-    // If we navigated to this page, we will have an item available as a nav param
-    this.selectedItem = navParams.get('item');
-
-    // Let's populate this page with some filler content for funzies
-    this.icons = ['flask', 'wifi', 'beer', 'football', 'basketball', 'paper-plane',
-    'american-football', 'boat', 'bluetooth', 'build'];
-
-    this.items = [];
-    for (let i = 1; i < 11; i++) {
-      this.items.push({
-        title: 'Item ' + i,
-        note: 'This is item #' + i,
-        icon: this.icons[Math.floor(Math.random() * this.icons.length)]
-      });
-    }
+    public navParams: NavParams,
+    public loadCtrl:LoadingController,
+    public authService:AuthenticateService) {
   }
 
-  getRepoDetails(){
-    this.gitService.getRepos("Migg81")
+  getRepoDetails(username:string){
+
+     let loader = this.loadCtrl.create({
+      content: 'Getting data...'
+    });
+
+     loader.present().then(() => {
+          this.gitService.getRepos(username)
                      .subscribe(
-                       repos => this.repos = repos,
-                       error =>  this.errorMessage = <any>error);
+                       repos => {
+                            this.repos = repos;
+                            loader.dismiss();
+                       },
+                       error =>  {
+                         this.errorMessage = <any>error
+                        },
+                );
+     });
   }
 
   itemTapped(event, item) {
@@ -54,7 +54,13 @@ export class repositories {
 
   ionViewDidLoad()
   {
-    this.getRepoDetails();
+    if(this.authService.checkIfUserlogedIn()){
+        var username=localStorage.getItem("currentUser")
+              this.getRepoDetails(username);
+      }
+      else{
+          this.navCtrl.setRoot(LoginPage);
+      }
   }
   searchRepo()
   {
