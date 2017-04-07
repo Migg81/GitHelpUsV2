@@ -10,8 +10,8 @@
           <p>{{user.name}}</p>
           <p>{{user.email}}</p>
         </ion-item>
-        <ion-item class="item-icon-left"> 
-          <button ion-button icon-left clear outline menuClose class="logoutButtonSize" (click)="logOut()">
+        <ion-item class="item-icon-left" menuClose (click)="logOut()"> 
+          <button ion-button icon-left clear outline menuClose class="logoutButtonSize" >
             <ion-icon class="iconfrontSize" name="ios-log-out-outline" ></ion-icon>LOGOUT
           </button>
         </ion-item>
