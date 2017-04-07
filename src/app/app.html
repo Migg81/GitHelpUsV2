@@ -10,9 +10,9 @@
           <p>{{user.name}}</p>
           <p>{{user.email}}</p>
         </ion-item>
-        <ion-item class="item-icon-left" menu-close ng-click="login()"> 
-          <button ion-button icon-left clear outline class="logoutButtonSize" >
-            <ion-icon class="iconfrontSize" name="ios-log-out-outline"></ion-icon>LOGOUT
+        <ion-item class="item-icon-left"> 
+          <button ion-button icon-left clear outline menuClose class="logoutButtonSize" (click)="logOut()">
+            <ion-icon class="iconfrontSize" name="ios-log-out-outline" ></ion-icon>LOGOUT
           </button>
         </ion-item>
         <ion-item>
