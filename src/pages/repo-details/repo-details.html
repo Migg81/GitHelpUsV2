@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Repository Details</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list *ngIf="repo">
+    <ion-item (click)="profileTapped(repo.owner.login)" padding-top>
+      <ion-avatar item-left>
+        <img src={{repo.owner.avatar_url}}>
+      </ion-avatar>
+      <h2>{{repo.owner.login}}</h2>
+    </ion-item>
+    <ion-item no-lines>
+      <h2 padding-vertical>
+        {{repo.name}}
+      </h2>
+      <p>
+        {{repo.description === null ? "Not Available" : repo.description}}
+      </p>
+      <p color="code">Language: {{repo.language}}</p>
+    </ion-item>
+    <ion-item no-lines>
+      <p>
+        Created At: {{repo.created_at | date: 'dd/MM/yyyy H:mm' }}
+      </p>
+    </ion-item>
+    <ion-row>
+      <ion-col>
+        <button ion-button icon-left clear small>
+            <ion-icon name="thumbs-up"></ion-icon>
+            <div>{{repo.watchers}} Watchers</div>
+        </button>
+      </ion-col>
+      <ion-col>
+        <button ion-button icon-left clear small>
+            <ion-icon name="text"></ion-icon>
+            <div>{{repo.open_issues}} Open Issues</div>
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-list>
+</ion-content>

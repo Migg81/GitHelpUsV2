@@ -11,16 +11,17 @@
     </ion-buttons>
   </ion-navbar>
 </ion-header>
-
 <ion-content>
   <ion-item-group *ngIf="repos"> 
     <ion-list  *ngFor="let repo of repos">
       <ion-card>
-        <ion-card-title padding>
-          {{repo.name}}
-        </ion-card-title>
+        <ion-item-divider (click)="repoNameTapped(repo.owner.login,repo.name)">
+          <h2>
+            {{repo.name}}
+          </h2>
+        </ion-item-divider>
         <ion-card-content>
-          <p>
+          <p padding-vertical>
           {{repo.description === null ? "Not Available" : repo.description}}
           </p>
           <p color="code">Language: {{repo.language}}</p>

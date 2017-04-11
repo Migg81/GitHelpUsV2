@@ -16,7 +16,7 @@
             <h2>{{repo.owner.login}}</h2>
           </button>
         </ion-item>
-        <ion-card-title padding>
+        <ion-card-title padding (click)="repoTapped(repo.owner.login,repo.name)">
           {{repo.name}}
         </ion-card-title>
         <ion-card-content>

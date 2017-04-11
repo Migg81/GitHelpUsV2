@@ -28,6 +28,13 @@ export class GitService {
               .catch(this.handleError);
   }
 
+  getRepoDetails(username:string,repoName:string):Observable<any[]>{
+    var gitRepoUrl=this.gitApIUrl+"repos/"+username+"/"+ repoName;
+    return this.http.get(gitRepoUrl)
+              .map(this.extractData)
+              .catch(this.handleError);
+  }
+
   private extractData(res: any) {
     let result = res.json();
     return result || { };

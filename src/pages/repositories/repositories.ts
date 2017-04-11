@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { NavController, NavParams ,LoadingController} from 'ionic-angular';
 import { GitService ,AuthenticateService} from '../../service/shared';
-import { RepoSearchPage,LoginPage } from '../pages';
+import { RepoSearchPage,LoginPage ,RepoDetailsPage } from '../pages';
 import { Storage } from '@ionic/storage';
 
 @Component({
@@ -65,5 +65,8 @@ export class repositories {
   searchRepo()
   {
     this.navCtrl.push(RepoSearchPage);
+  }
+  repoNameTapped(username:string,reponame:string){
+     this.navCtrl.push(RepoDetailsPage,{username:username,reponame:reponame});
   }
 }
