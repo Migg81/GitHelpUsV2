@@ -5,15 +5,15 @@
     </button>
     <ion-title>Repository</ion-title>
     <ion-buttons padding-right end>
-      <button ion-button icon-only  outline large  clear (click)="searchRepo()">
+      <button ion-button icon-only outline large clear (click)="searchRepo()">
        <ion-icon name="search" large> </ion-icon>
       </button>
     </ion-buttons>
   </ion-navbar>
 </ion-header>
 <ion-content>
-  <ion-item-group *ngIf="repos"> 
-    <ion-list  *ngFor="let repo of repos">
+  <ion-item-group *ngIf="repos">
+    <ion-list *ngFor="let repo of repos">
       <ion-card>
         <ion-item-divider (click)="repoNameTapped(repo.owner.login,repo.name)">
           <h2>
@@ -22,24 +22,27 @@
         </ion-item-divider>
         <ion-card-content>
           <p padding-vertical>
-          {{repo.description === null ? "Not Available" : repo.description}}
+            {{repo.description === null ? "Not Available" : repo.description}}
           </p>
-          <p color="code">Language: {{repo.language}}</p>
         </ion-card-content>
-          <ion-row>
-            <ion-col>
-              <button ion-button icon-left clear small>
+        <ion-row>
+          <ion-col padding-left col-4>Language</ion-col>
+          <ion-col col-8 ion-text color="code">{{repo.language}}</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <button ion-button icon-left clear>
                 <ion-icon name="thumbs-up"></ion-icon>
                 <div>{{repo.watchers}} Watchers</div>
               </button>
-            </ion-col>
-            <ion-col>
-              <button ion-button icon-left clear small>
-                <ion-icon name="text"></ion-icon>
+          </ion-col>
+          <ion-col>
+            <button ion-button icon-left clear style="float:right">
+                <ion-icon name="open"></ion-icon>
                 <div>{{repo.open_issues}} Open Issues</div>
               </button>
-            </ion-col>
-          </ion-row>
+          </ion-col>
+        </ion-row>
       </ion-card>
     </ion-list>
   </ion-item-group>

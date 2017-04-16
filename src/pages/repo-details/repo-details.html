@@ -19,23 +19,43 @@
       <p>
         {{repo.description === null ? "Not Available" : repo.description}}
       </p>
-      <p color="code">Language: {{repo.language}}</p>
+    </ion-item>
+    <ion-item>
+      <ion-note>
+        Language
+      </ion-note>
+      <div ion-text color="code" item-right >{{repo.language}}</div>
     </ion-item>
     <ion-item no-lines>
-      <p>
-        Created At: {{repo.created_at | date: 'dd/MM/yyyy H:mm' }}
-      </p>
+      <ion-icon name="calendar" padding-right color="iconshade"></ion-icon>
+       Created 
+       <div item-right>{{repo.created_at | date: 'dd/MM/yyyy H:mm' }}</div>
+    </ion-item>
+    <ion-item no-lines>
+      <ion-icon name="git-branch" padding-right color="iconshade"></ion-icon>
+        Default Branch
+      <ion-badge item-right color="primary">{{repo.default_branch}}</ion-badge>
+    </ion-item>
+    <ion-item no-lines>
+      <ion-icon name="logo-buffer" padding-right color="iconshade"></ion-icon>
+      Size
+      <ion-badge item-right color="primary">{{repo.size}}</ion-badge>
+    </ion-item>
+    <ion-item>
+      <ion-icon name="people" padding-right color="iconshade"></ion-icon>
+        Subscribers Count
+      <ion-badge item-right color="primary">{{repo.subscribers_count}}</ion-badge>
     </ion-item>
     <ion-row>
       <ion-col>
-        <button ion-button icon-left clear small>
+        <button ion-button icon-left clear>
             <ion-icon name="thumbs-up"></ion-icon>
             <div>{{repo.watchers}} Watchers</div>
         </button>
       </ion-col>
       <ion-col>
-        <button ion-button icon-left clear small>
-            <ion-icon name="text"></ion-icon>
+        <button ion-button icon-left clear style="float:right">
+            <ion-icon name="open"></ion-icon>
             <div>{{repo.open_issues}} Open Issues</div>
         </button>
       </ion-col>
