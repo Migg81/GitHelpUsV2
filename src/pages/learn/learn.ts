@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, ToastController } from 'ionic-angular';
 import { ModalController } from 'ionic-angular';
-import { GitcBranchPage,GitMargePage,GitAboutPage,GitclonePage,GitCommitPage,GitComparePage,GitInitPage,GitPullPage,GitPushPage,GitStatusPage,GitTrackingPage} from '../modal-page/modal-pages';
-
+import { GitcBranchPage, GitMargePage, GitAboutPage, GitclonePage, GitCommitPage, GitComparePage, GitInitPage, GitPullPage, GitPushPage, GitStatusPage, GitTrackingPage } from '../modal-page/modal-pages';
+import { Network } from '@ionic-native/network';
 /*
   Generated class for the Learn page.
 
@@ -16,13 +16,17 @@ import { GitcBranchPage,GitMargePage,GitAboutPage,GitclonePage,GitCommitPage,Git
 export class LearnPage {
 
   constructor(
-    public navCtrl: NavController, 
+    public navCtrl: NavController,
     public navParams: NavParams,
-    public modalCtrl: ModalController) {}
+    private toast: ToastController, private network: Network,
+    public modalCtrl: ModalController) { }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad LearnPage');
+    let networkType = this.network.type;
   }
+
+  
   presentGitAboutModal() {
     let modal = this.modalCtrl.create(GitAboutPage);
     modal.present();
@@ -31,7 +35,7 @@ export class LearnPage {
     let modal = this.modalCtrl.create(GitcBranchPage);
     modal.present();
   }
-  presentGitcMargeModal(){
+  presentGitcMargeModal() {
     let modal = this.modalCtrl.create(GitMargePage);
     modal.present();
   }

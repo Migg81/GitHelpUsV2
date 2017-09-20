@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams,LoadingController } from 'ionic-angular';
 import { GitService } from '../../service/shared';
 import { Iuser } from '../../models/model';
-import { Camera,CameraOptions } from 'ionic-native';
+import { Camera,CameraOptions } from '@ionic-native/camera';
 import { LoginPage } from '../pages';
 
 @Component({
@@ -17,6 +17,7 @@ company:any;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
+              private camera: Camera,
               public loadingctrl:LoadingController,
               public gitService:GitService) {}
   
@@ -49,14 +50,14 @@ company:any;
 
    takePicture(){
     let option:CameraOptions={
-      destinationType:Camera.DestinationType.FILE_URI,
-      sourceType:Camera.PictureSourceType.CAMERA,
-      encodingType:Camera.EncodingType.PNG,
+      destinationType:this.camera.DestinationType.FILE_URI,
+      sourceType:this.camera.PictureSourceType.CAMERA,
+      encodingType:this.camera.EncodingType.PNG,
       targetHeight:500,
       targetWidth:500,
       saveToPhotoAlbum:false
     };
-    Camera.getPicture(option).then((imageUri)=>{
+    this.camera.getPicture(option).then((imageUri)=>{
       this.user.avatar_url=imageUri;
     })
   }

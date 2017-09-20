@@ -4,7 +4,10 @@ import { MyApp } from './app.component';
 import {RepoDetailsPage, repositories,profile,LearnPage,EditProfilePage ,RepoSearchPage,LoginPage} from '../pages/pages';
 import { GitcBranchPage ,GitMargePage,GitAboutPage, GitclonePage,GitCommitPage,GitComparePage,GitInitPage,GitPullPage,GitPushPage,GitStatusPage,GitTrackingPage} from '../pages/modal-page/modal-pages';
 import { GitService,AuthenticateService } from '../service/shared';
-
+import { Network } from '@ionic-native/network';
+import { Camera } from '@ionic-native/camera';
+import { SplashScreen } from '@ionic-native/splash-screen';
+import { StatusBar } from '@ionic-native/status-bar';
 @NgModule({
   declarations: [
     MyApp,
@@ -52,6 +55,6 @@ import { GitService,AuthenticateService } from '../service/shared';
     LoginPage,
     RepoDetailsPage
   ],
-  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler},GitService,AuthenticateService]
+  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler},GitService,AuthenticateService,Network,Camera,SplashScreen,StatusBar]
 })
 export class AppModule {}

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { NavController, NavParams ,LoadingController} from 'ionic-angular';
+import { NavController, NavParams ,LoadingController,AlertController } from 'ionic-angular';
 import { GitService ,AuthenticateService} from '../../service/shared';
 import { RepoSearchPage,LoginPage ,RepoDetailsPage } from '../pages';
 import { Storage } from '@ionic/storage';
@@ -22,6 +22,7 @@ export class repositories {
     public gitService:GitService,
     public navParams: NavParams,
     public loadCtrl:LoadingController,
+    public alertCtrl: AlertController,
     public authService:AuthenticateService) {
   }
 
@@ -68,5 +69,27 @@ export class repositories {
   }
   repoNameTapped(username:string,reponame:string){
      this.navCtrl.push(RepoDetailsPage,{username:username,reponame:reponame});
+  }
+
+  showRadio() {
+    let alert = this.alertCtrl.create();
+    alert.setTitle('Lightsaber color');
+
+    alert.addInput({
+      type: 'img',
+      label: 'Blue',
+      value: 'blue',
+      checked: true
+    });
+
+    alert.addButton('Cancel');
+    alert.addButton({
+      text: 'OK',
+      handler: data => {
+        //this.testRadioOpen = false;
+        //this.testRadioResult = data;
+      }
+    });
+    alert.present();
   }
 }
