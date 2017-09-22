@@ -1,28 +1,40 @@
 <ion-header>
-  <ion-navbar>
-    <button ion-button item-left clear color="dark" (click)="closeModal()">
-       <ion-icon name="arrow-dropleft"></ion-icon>
-       <ion-title >Git Init</ion-title>
-    </button>
+  <ion-navbar color="primary">
+    <ion-buttons left>
+      <button ion-button icon-only (click)="closeModal()">
+            <ion-icon name="arrow-dropleft"></ion-icon>
+        </button>
+    </ion-buttons>
+    <ion-title>Git Init</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
-  <ion-item> 
+  <ion-item-divider>
     <h2 color="code">Getting a Git Repository</h2>
-    <p text-wrap>You can get a Git project using two main approaches. The first takes an existing project
-       or directory and imports it into Git. The second clones an existing Git repository from another server.</p>
-  </ion-item>
-  <ion-item>
+    <p text-wrap>You can get a Git project using two main approaches. The first takes an existing project or directory and imports it
+      into Git. The second clones an existing Git repository from another server.</p>
+  </ion-item-divider>
+  <ion-item-divider>
     <h2 text-wrap color="code">Initializing a Repository in an Existing Directory</h2>
-    <p text-wrap>If you’re starting to track an existing project in Git, you need to go to the project’s directory. If you’ve never done this, it looks a little different depending on which system you’re running:</p>
+    <p text-wrap>If you’re starting to track an existing project in Git, you need to go to the project’s directory. If you’ve never done
+      this, it looks a little different depending on which system you’re running:
+    </p>
+  </ion-item-divider>
+  <ion-item no-lines>
     <h2 color="code">For Linux</h2>
     <ion-item-divider color="light">$ cd /home/user/your_repository</ion-item-divider>
-    <h2 color="code">For Mac</h2>
-    <ion-item-divider color="light">$ cd /Users/user/your_repositor</ion-item-divider>
-    <h2 color="code">For Windows</h2>
-    <ion-item-divider color="light">$ cd /c/user/your_repository</ion-item-divider>
-    <h2 color="code">For Init</h2>
-    <ion-item-divider color="light">$ git init</ion-item-divider>
   </ion-item>
+  <ion-item no-lines>
+    <p color="code">For Mac</p>
+    <ion-item-divider color="light">$ cd /Users/user/your_repositor</ion-item-divider>
+  </ion-item>
+  <ion-item no-lines>
+    <p color="code">For Windows</p>
+    <ion-item-divider color="light">$ cd /c/user/your_repository</ion-item-divider>
+  </ion-item>
+  <ion-item-divider>
+    <h2 color="code">For Init</h2>
+    <div padding-top><p color="secondarydarkText">$ git init</p></div>
+  </ion-item-divider>
 </ion-content>

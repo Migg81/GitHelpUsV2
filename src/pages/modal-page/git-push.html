@@ -1,26 +1,32 @@
 <ion-header>
-
-  <ion-navbar>
-    <button ion-button item-left clear color="dark" (click)="closeModal()">
-       <ion-icon name="arrow-dropleft"></ion-icon>
-       <ion-title>Git Push</ion-title>
-    </button>
+  <ion-navbar color="primary">
+    <ion-buttons left>
+      <button ion-button icon-only (click)="closeModal()">
+            <ion-icon name="arrow-dropleft"></ion-icon>
+        </button>
+    </ion-buttons>
+    <ion-title>Git Push</ion-title>
   </ion-navbar>
-
 </ion-header>
 
 <ion-content>
-  <ion-item> 
+  <ion-item-divider>
     <h2 color="code">Pushing to Your Remotes</h2>
-    <p text-wrap>When you have your project at a point that you want to share, you have to push it upstream. The command for this is simple: git push [remote-name] [branch-name]. If you want to push your master branch to your origin server (again, cloning generally sets up both of those names for you automatically),
-       then you can run this to push any commits you’ve done back up to the server:</p>
-  </ion-item>
-  <ion-item>
+    <p text-wrap>When you have your project at a point that you want to share, you have to push it upstream. The command for this is simple:
+      git push [remote-name] [branch-name]. If you want to push your master branch to your origin server (again, cloning
+      generally sets up both of those names for you automatically), then you can run this to push any commits you’ve done
+      back up to the server:</p>
+  </ion-item-divider>
+  <ion-item no-lines>
     <h2 color="code">Push</h2>
-    <ion-item-divider color="light">$ git push origin master</ion-item-divider>
+    <ion-item-divider color="light">
+      <p color="secondarydark">$ git push origin master</p>
+    </ion-item-divider>
   </ion-item>
-  <ion-item>
-    <p text-wrap >This command works only if you cloned from a server to which you have write access and if nobody has pushed in the meantime. If you and someone else clone at the same time and they push upstream and then you push upstream, your push will rightly be rejected. 
-      You’ll have to fetch their work first and incorporate it into yours before you’ll be allowed to push. </p>
-  </ion-item>
+  <ion-item-divider>
+    <p text-wrap>This command works only if you cloned from a server to which you have write access and if nobody has pushed in the meantime.
+      If you and someone else clone at the same time and they push upstream and then you push upstream, your push will rightly
+      be rejected. You’ll have to fetch their work first and incorporate it into yours before you’ll be allowed to push.
+      </p>
+  </ion-item-divider>
 </ion-content>

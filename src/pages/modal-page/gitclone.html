@@ -1,26 +1,32 @@
-
 <ion-header>
-  <ion-navbar>
-    <button ion-button item-left clear color="dark" (click)="closeModal()">
-       <ion-icon name="arrow-dropleft"></ion-icon>
-       <ion-title>Git Clone</ion-title>
-    </button>
+  <ion-navbar color="primary">
+    <ion-buttons left>
+      <button ion-button icon-only (click)="closeModal()">
+            <ion-icon name="arrow-dropleft"></ion-icon>
+        </button>
+    </ion-buttons>
+    <ion-title>Git Clone</ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content >
-  <ion-item> 
+<ion-content>
+  <ion-item-divider>
     <h2 color="code">Getting a Git Repository</h2>
-    <p text-wrap>If you want to get a copy of an existing Git repository – for example, a project you’d like to contribute to – the command you need is git clone. If you’re familiar with other VCS systems such as Subversion, you’ll notice that the command is "clone" and not "checkout". This is an important distinction – instead of getting just a working copy, Git receives a full copy of nearly all data that the server has. Every version of every file for the history of the project is pulled down by default when you run git clone. In fact, if your server disk gets corrupted, you can often use nearly any of the clones on any client to
-       set the server back to the state it was in when it was cloned </p>
-  </ion-item>
-  <ion-item>
+    <p text-wrap>If you want to get a copy of an existing Git repository – for example, a project you’d like to contribute to – the command
+      you need is git clone. If you’re familiar with other VCS systems such as Subversion, you’ll notice that the command
+      is "clone" and not "checkout". This is an important distinction – instead of getting just a working copy, Git receives
+      a full copy of nearly all data that the server has. Every version of every file for the history of the project is pulled
+      down by default when you run git clone. In fact, if your server disk gets corrupted, you can often use nearly any of
+      the clones on any client to set the server back to the state it was in when it was cloned </p>
+  </ion-item-divider>
+  <ion-item no-lines>
     <h2 color="code">Clone</h2>
     <ion-item-divider color="light">$ git clone https://github.com/Example1</ion-item-divider>
   </ion-item>
-   <ion-item>
-     <p text-wrap>If you want to clone the repository into a directory named something other than “libgit2”, you can specify that as the next command-line option:</p>
+  <ion-item>
+    <p text-wrap>If you want to clone the repository into a directory named something other than “libgit2”, you can specify that as the
+      next command-line option:</p>
     <h2 color="code">To change directory Name</h2>
-    <ion-item-divider color="light">$ git clone https://github.com/Example1 Example2</ion-item-divider>
+    <ion-item no-lines>$ git clone https://github.com/Example1 Example2</ion-item>
   </ion-item>
 </ion-content>

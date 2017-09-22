@@ -1,7 +1,7 @@
 <ion-menu [content]="content">
   <ion-content>
      <ion-list>
-        <ion-item *ngIf="user">
+        <ion-item *ngIf="user" color="secondary">
           <p>
             <ion-avatar item-left>
               <img src={{user.avatar_url}}>
@@ -10,14 +10,14 @@
           <p>{{user.name}}</p>
           <p>{{user.email}}</p>
         </ion-item>
-        <ion-item class="item-icon-left" menuClose (click)="logOut()"> 
+        <ion-item class="item-icon-left" menuClose (click)="logOut()" color="secondarydark"> 
           <button ion-button icon-left clear outline menuClose class="logoutButtonSize" >
             <ion-icon class="iconfrontSize" name="ios-log-out-outline" ></ion-icon>LOGOUT
           </button>
         </ion-item>
         <ion-item>
           <button ion-item menuClose icon-left class="buttonNavPadding" *ngFor="let p of pages" (click)="openPage(p)" >
-            <ion-icon class="iconLineHeight" name={{p.icon}} ></ion-icon>
+            <ion-icon class="iconLineHeight" color="primarydark" name={{p.icon}} ></ion-icon>
             {{p.title}}
           </button>
         </ion-item>

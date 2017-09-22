@@ -1,25 +1,32 @@
 <ion-header>
-  <ion-navbar>
-    <button ion-button item-left clear color="dark" (click)="closeModal()">
-       <ion-icon name="arrow-dropleft"></ion-icon>
-       <ion-title>Git Compare</ion-title>
-    </button>
+  <ion-navbar color="primary">
+    <ion-buttons left>
+      <button ion-button icon-only (click)="closeModal()">
+            <ion-icon name="arrow-dropleft"></ion-icon>
+        </button>
+    </ion-buttons>
+    <ion-title>Git Compare</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
-  <ion-item>
+  <ion-item-divider>
     <h2 color="code">git-diff - Show changes between commits, commit and working tree, etc</h2>
     <p text-wrap>
-      Show changes between the working tree and the index or a tree, changes between the index and a tree, changes between two trees, changes between two blob objects, or changes between two files on disk.
+      Show changes between the working tree and the index or a tree, changes between the index and a tree, changes between two
+      trees, changes between two blob objects, or changes between two files on disk.
     </p>
-  </ion-item>
-  <ion-item> 
+  </ion-item-divider>
+  <ion-item no-lines>
     <h2 color="code" text-wrap>If you want to see what you haven't git added yet</h2>
-    <ion-item-divider text-wrap color="light">$ git diff myfile.txt</ion-item-divider>
+    <ion-item-divider text-wrap color="light">
+      <p color="secondarydarkText">
+        $ git diff myfile.txt
+      </p>
+    </ion-item-divider>
   </ion-item>
-  <ion-item> 
+  <ion-item-divider>
     <h2 color="code" text-wrap>If you want to see already-added changes</h2>
-    <ion-item-divider text-wrap color="light">git diff --cached myfile.txt</ion-item-divider>
-  </ion-item>
+    <p padding-top padding-left text-wrap color="secondarydarkText">git diff --cached myfile.txt</p>
+  </ion-item-divider>
 </ion-content>
