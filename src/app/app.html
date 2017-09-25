@@ -1,26 +1,23 @@
 <ion-menu [content]="content">
   <ion-content>
-     <ion-list>
-        <ion-item  no-lines *ngIf="user" color="secondary">
-          <p>
-            <ion-avatar item-left>
-              <img src={{user.avatar_url}}>
-            </ion-avatar>
-          </p>  
-          <p>{{user.name}}</p>
-          <p>{{user.email}}</p>
-        </ion-item>
-        <ion-item no-lines class="item-icon-left" menuClose (click)="logOut()" color="secondarydark"> 
-          <button ion-button icon-left clear outline menuClose class="logoutButtonSize" >
-            <ion-icon class="iconfrontSize" name="ios-log-out-outline" ></ion-icon>LOGOUT
-          </button>
-        </ion-item>
-        <ion-item no-lines>
-          <button ion-item menuClose icon-left class="buttonNavPadding" *ngFor="let p of pages" (click)="openPage(p)" >
-            <ion-icon large class="iconLineHeight" color="code" name={{p.icon}} ></ion-icon>
-            {{p.title}}
-          </button>
-        </ion-item>
+    <ion-list>
+      <ion-item no-lines *ngIf="user" color="secondary">
+        <p>
+          <ion-avatar item-left>
+            <img src={{user.avatar_url}}>
+          </ion-avatar>
+        </p>
+        <p>{{user.name}}</p>
+        <p>{{user.email}}</p>
+      </ion-item>
+      <ion-item no-lines class="item-icon-left" menuClose (click)="logOut()" color="secondarydark">
+        <ion-icon name="ios-log-out-outline"  item-left></ion-icon>
+        <div  color="code" class="buttonNavPadding">LOGOUT</div>
+      </ion-item>
+      <ion-item no-lines menuClose *ngFor="let p of pages" (click)="openPage(p)">
+        <ion-icon color="code" name={{p.icon}}  item-left></ion-icon>
+        <div  color="code" class="buttonNavPadding">{{p.title}}</div>
+      </ion-item>
     </ion-list>
   </ion-content>
 </ion-menu>
