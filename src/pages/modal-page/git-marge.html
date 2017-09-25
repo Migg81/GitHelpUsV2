@@ -10,7 +10,7 @@
 </ion-header>
 
 <ion-content>
-  <ion-item-divider>
+  <ion-item-divider color="primarylight">
     <h2 color="code">Marging</h2>
     <p text-wrap>
       Incorporates changes from the named commits (since the time their histories diverged from the current branch) into the current
@@ -20,14 +20,20 @@
   </ion-item-divider>
   <ion-item no-lines>
     <h2 color="code" text-wrap>Merge branches fixes and enhancements on top of the current branch, making an octopus merge:</h2>
-    <ion-item-divider color="secondarydarkText">$ git merge fixes enhancements</ion-item-divider>
+    <ion-item-divider>
+      <p color="secondarydarkText">$ git merge fixes enhancements</p>
+    </ion-item-divider>
   </ion-item>
   <ion-item no-lines>
     <h2 color="code" text-wrap>Merge branch obsolete into the current branch, using ours merge strategy</h2>
-    <ion-item-divider color="secondarydarkText">$ git merge -s ours obsolete</ion-item-divider>
+    <ion-item-divider>
+      <p color="secondarydarkText">$ git merge -s ours obsolete</p>
+    </ion-item-divider>
   </ion-item>
-  <ion-item-divider>
+  <ion-item no-lines>
     <h2 color="code" text-wrap>Merge branch maint into the current branch, but do not make a new commit automaticall</h2>
-    <p padding-top padding-left color="secondarydarkText">$ git merge --no-commit maint</p>
-  </ion-item-divider>
+    <ion-item-divider>
+      <p color="secondarydarkText">$ git merge --no-commit maint</p>
+    </ion-item-divider>
+  </ion-item>
 </ion-content>

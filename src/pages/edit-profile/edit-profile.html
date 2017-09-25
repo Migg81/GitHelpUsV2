@@ -8,7 +8,7 @@
   <ion-navbar color="primary">
     <ion-title>Edit Profile</ion-title>
     <ion-buttons class="iconPaddingRight" end>
-      <button ion-button icon-only  outline large  clear (click)="editProfile()">
+      <button ion-button icon-only outline large clear (click)="editProfile()">
        <ion-icon name="done-all" large> </ion-icon>
       </button>
     </ion-buttons>
@@ -16,44 +16,38 @@
 </ion-header>
 
 <ion-content padding>
-<ion-list *ngIf="user" >
-  <ion-item>
-    <ion-thumbnail  item-left>
-      <img src={{user.avatar_url}} >
-    </ion-thumbnail>
-    <button ion-button icon-only  outline large  clear color="dark" >  
+  <ion-list *ngIf="user">
+    <ion-item>
+      <ion-thumbnail item-left>
+        <img src={{user.avatar_url}}>
+      </ion-thumbnail>
+      <button ion-button icon-only outline large clear color="dark">  
       <ion-icon name="ios-camera-outline"  (click)="takePicture()" ></ion-icon>
     </button>
-  </ion-item>
-  <ion-item>
-    <ion-label floating>Username</ion-label>
-    <ion-input type="text" readonly="true"  value="{{user.login}}" ></ion-input>
-  </ion-item>
-
-  <ion-item>
-    <ion-label floating>Name</ion-label>
-    <ion-input type="text"  [(ngModel)]="user.name"></ion-input>
-  </ion-item>
-
-   <ion-item>
-    <ion-label floating>Email</ion-label>
-    <ion-input type="text"  value="{{user.email}}"></ion-input>
-  </ion-item>
-
-  <ion-item>
-    <ion-label floating>Company</ion-label>
-    <ion-input type="text"  [(ngModel)]='user.company'></ion-input>
-  </ion-item>
-
-  <ion-item>
-    <ion-label floating>Location</ion-label>
-    <ion-input type="text"  [(ngModel)]="user.location"></ion-input>
-  </ion-item>
-  
-  <ion-item>
-    <ion-label floating>Bio</ion-label>
-    <ion-textarea [(ngModel)]="user.bio"></ion-textarea>
-  </ion-item>
-
-</ion-list>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Username</ion-label>
+      <ion-input type="text" readonly="true" value="{{user.login}}"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Name</ion-label>
+      <ion-input type="text" [(ngModel)]="user.name"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Email</ion-label>
+      <ion-input type="text" readonly="true" value="{{user.email}}"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Company</ion-label>
+      <ion-input type="text" [(ngModel)]='user.company'></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Location</ion-label>
+      <ion-input type="text" [(ngModel)]="user.location"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Bio</ion-label>
+      <ion-textarea [(ngModel)]="user.bio"></ion-textarea>
+    </ion-item>
+  </ion-list>
 </ion-content>

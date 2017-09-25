@@ -10,7 +10,7 @@
 </ion-header>
 
 <ion-content>
-  <ion-item-divider>
+  <ion-item-divider color="primarylight">
     <h2 color="code">Committing Your Changes</h2>
     <p text-wrap>You can commit your changes. Remember that anything that is still unstaged – any files you have created or modified that
       you haven’t run git add on since you edited them – won’t go into this commit. They will stay as modified files on your
@@ -19,14 +19,16 @@
   </ion-item-divider>
   <ion-item no-lines>
     <h2 color="code">Commit</h2>
-    <ion-item-divider color="light">
-      <p color="secondarydark">$ git commit</p>
+    <ion-item-divider>
+      <p color="secondarydarkText">$ git commit</p>
     </ion-item-divider>
   </ion-item>
-  <ion-item-divider>
+  <ion-item no-lines>
     <h2 color="code" text-wrap>Alternatively, you can type your commit message inline with the commit command by specifying it after a -m flag, like
       this:
     </h2>
-    <p color="secondarydark" text-wrap>$ git commit -m "Story 182: Fix benchmarks for speed"</p>
-  </ion-item-divider>
+    <ion-item-divider>
+      <p color="secondarydarkText" text-wrap>$ git commit -m "Story 182: Fix benchmarks for speed"</p>
+    </ion-item-divider>
+  </ion-item>
 </ion-content>

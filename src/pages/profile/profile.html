@@ -1,9 +1,9 @@
 <ion-header>
   <ion-navbar color="primary">
-      <button ion-button menuToggle>
+    <button ion-button menuToggle>
         <ion-icon name="menu"></ion-icon>
       </button>
-      <ion-title>Profile</ion-title>
+    <ion-title>Profile</ion-title>
     <ion-buttons end *ngIf="isLoggedInuser">
       <button icon-right ion-button icon-only clear outline large (click)="editProfile()">
         <ion-icon name="ios-create-outline" large></ion-icon>
@@ -13,41 +13,32 @@
 </ion-header>
 
 <ion-content padding>
-<ion-list *ngIf="user" >
-  <ion-item>
-    <ion-thumbnail  item-left>
+  <ion-list *ngIf="user">
+    <ion-item>
+      <ion-thumbnail item-left>
         <img src={{user.avatar_url}}>
-    </ion-thumbnail>
-  </ion-item>
-  <ion-item>
-    <ion-label floating>Username</ion-label>
-    <ion-input type="text" readonly="true" value="{{user.login}}" ></ion-input>
-  </ion-item>
-
-  <ion-item>
-    <ion-label floating>Name</ion-label>
-    <ion-input type="text" readonly="true" value="{{user.name}}"></ion-input>
-  </ion-item>
-
-   <ion-item>
-    <ion-label floating>Email</ion-label>
-    <ion-input type="text" readonly="true" value="{{user.email ?user.email :'No Information Available'}}"></ion-input>
-  </ion-item>
-
-  <ion-item>
-    <ion-label floating>Company</ion-label>
-    <ion-input type="text" readonly="true" value="{{user.company?user.company :'No Information Available'}}"></ion-input>
-  </ion-item>
-
-  <ion-item>
-    <ion-label floating>Location</ion-label>
-    <ion-input type="text" readonly="true" value="{{user.location?user.location :'No Information Available'}}"></ion-input>
-  </ion-item>
-  
-  <ion-item>
-    <ion-label floating>Bio</ion-label>
-    <ion-textarea text-wrap type="text" readonly="true" value="{{user.bio?user.bio:'No Information Available'}}"></ion-textarea>
-  </ion-item>
-
-</ion-list>
+      </ion-thumbnail>
+      <ion-input type="text" readonly="true" value="{{user.login}}"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Name</ion-label>
+      <ion-input type="text" readonly="true" value="{{user.name}}"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Email</ion-label>
+      <ion-input type="text" readonly="true" value="{{user.email ?user.email :'No Information Available'}}"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Company</ion-label>
+      <ion-input type="text" readonly="true" value="{{user.company?user.company :'No Information Available'}}"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Location</ion-label>
+      <ion-input type="text" readonly="true" value="{{user.location?user.location :'No Information Available'}}"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Bio</ion-label>
+      <ion-textarea text-wrap type="text" readonly="true" value="{{user.bio?user.bio:'No Information Available'}}"></ion-textarea>
+    </ion-item>
+  </ion-list>
 </ion-content>

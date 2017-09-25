@@ -1,4 +1,4 @@
-<ion-header >
+<ion-header>
   <ion-navbar color="primary">
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
@@ -12,11 +12,16 @@
   </ion-navbar>
 </ion-header>
 <ion-content>
+  <ion-fab right bottom>
+    <button ion-fab  (click)="searchRepo()" color="secondary">
+        <ion-icon name="search" large> </ion-icon>
+    </button>
+  </ion-fab>
   <ion-item-group *ngIf="repos">
     <ion-list *ngFor="let repo of repos">
-      <ion-card>
-        <ion-item-divider (click)="repoNameTapped(repo.owner.login,repo.name)">
-          <h2>
+      <ion-card (click)="repoNameTapped(repo.owner.login,repo.name)">
+        <ion-item-divider>
+          <h2 color="code">
             {{repo.name}}
           </h2>
         </ion-item-divider>
@@ -31,16 +36,16 @@
         </ion-row>
         <ion-row>
           <ion-col>
-            <button ion-button icon-left clear>
-                <ion-icon name="thumbs-up"></ion-icon>
+            <button ion-button icon-left clear color="iconshade">
+                <ion-icon name="eye"></ion-icon>
                 <div>{{repo.watchers}} Watchers</div>
-              </button>
+            </button>
           </ion-col>
           <ion-col>
-            <button ion-button icon-left clear style="float:right">
+            <button ion-button icon-left clear style="float:right" color="secondarydark" >
                 <ion-icon name="open"></ion-icon>
                 <div>{{repo.open_issues}} Open Issues</div>
-              </button>
+            </button>
           </ion-col>
         </ion-row>
       </ion-card>
