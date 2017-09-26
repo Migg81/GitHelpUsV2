@@ -21,6 +21,7 @@ import { Iuser } from '../../models/model';
 export class RepoSearchPage {
 
   users: Observable<any[]>;
+  errorMsg:string;
   private searchTerms = new Subject<string>();
 
   constructor(
@@ -41,8 +42,7 @@ export class RepoSearchPage {
         // or the observable of empty heroes if there was no search term
         : Observable.of<any[]>([]))
         .catch(error => {
-        // TODO: add real error handling
-        console.log(error);
+          this.errorMsg = "Something went wront please try again.";
         return Observable.of<any[]>([]);
       });
 

@@ -60,7 +60,8 @@ export class MyApp {
   }
 
   getUsers() {
-    this.gitService.getUsers("migg81")
+    var currentUser=localStorage.getItem("currentUser")
+    this.gitService.getUsers(currentUser)
       .then(response => {
         this.user = <Iuser>response;
       });

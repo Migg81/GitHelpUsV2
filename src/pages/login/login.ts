@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import { AuthenticateService } from '../../service/shared';  
+import { AuthenticateService } from '../../service/shared';
 import { LearnPage } from '../pages';
 import { Storage } from '@ionic/storage';
 /*
@@ -15,33 +15,40 @@ import { Storage } from '@ionic/storage';
 })
 export class LoginPage {
 
-  username:string;
-  pswd:string;
+  username: string;
+  pswd: string;
+  errorMsg: string;
 
   constructor(
-    public navCtrl: NavController, 
+    public navCtrl: NavController,
     public navParams: NavParams,
-    public authService: AuthenticateService) {}
+    public authService: AuthenticateService) { }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad LoginPage');
     this.verifyLogin();
   }
 
-  userLogin()
-  {
-    this.authService.login(this.username,this.pswd).then(response => {
-       if(response==true)
-        {
-          this.navCtrl.setRoot(LearnPage)
-        }
-    });     
+  userLogin() {
+    this.authService.login(this.username, this.pswd).then(response => {
+      if (response == true) {
+        this.navCtrl.setRoot(LearnPage)
+      }
+    }).catch(error => {
+      if(error==="Unauthorized")
+      {
+        this.errorMsg = "Your username or Password is not correct.";
+      }
+      else
+      {
+        this.errorMsg ="Something went wront please try again."
+      }
+    });
   }
 
-  verifyLogin()
-  {
-    var jj=localStorage.getItem('currentUser');
-    if(localStorage.getItem('currentUser')){
+  verifyLogin() {
+    var jj = localStorage.getItem('currentUser');
+    if (localStorage.getItem('currentUser')) {
       this.navCtrl.setRoot(LearnPage);
     }
   }

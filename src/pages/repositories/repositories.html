@@ -13,7 +13,7 @@
 </ion-header>
 <ion-content>
   <ion-fab right bottom>
-    <button ion-fab  (click)="searchRepo()" color="secondary">
+    <button ion-fab (click)="searchRepo()" color="secondary">
         <ion-icon name="search" large> </ion-icon>
     </button>
   </ion-fab>
@@ -35,16 +35,16 @@
           <ion-col col-8 ion-text color="code">{{repo.language}}</ion-col>
         </ion-row>
         <ion-row>
-          <ion-col>
+          <ion-col col-6>
             <button ion-button icon-left clear color="iconshade">
-                <ion-icon name="eye"></ion-icon>
-                <div>{{repo.watchers}} Watchers</div>
+                  <ion-icon name="eye"></ion-icon>
+                  <div style="text-transform:none">{{repo.watchers}} Watchers</div>
             </button>
           </ion-col>
-          <ion-col>
-            <button ion-button icon-left clear style="float:right" color="secondarydark" >
-                <ion-icon name="open"></ion-icon>
-                <div>{{repo.open_issues}} Open Issues</div>
+          <ion-col col-6>
+            <button ion-button icon-left clear style="float:right" color="secondarydark">
+                  <ion-icon name="open"></ion-icon>
+                  <div style="text-transform:none">{{repo.open_issues}} Issues</div>
             </button>
           </ion-col>
         </ion-row>

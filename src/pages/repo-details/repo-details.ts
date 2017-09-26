@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams,LoadingController } from 'ionic-angular';
+import { NavController, NavParams, LoadingController } from 'ionic-angular';
 import { GitService } from '../../service/shared';
 import { profile } from '../pages';
 
@@ -15,46 +15,47 @@ import { profile } from '../pages';
 })
 export class RepoDetailsPage {
 
-  repo:any;
+  repo: any;
+  errorMsg: string;
 
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    public gitService:GitService,
-    public loadCtrl:LoadingController) {}
+    public gitService: GitService,
+    public loadCtrl: LoadingController) { }
 
   ionViewDidLoad() {
-    var username=this.navParams.get("username");
-    var reponame=this.navParams.get("reponame");
-    this.loadRepoDetails(username,reponame);
+    var username = this.navParams.get("username");
+    var reponame = this.navParams.get("reponame");
+    this.loadRepoDetails(username, reponame);
   }
 
-  private loadRepoDetails(username:string,reponame:string)
-  {
-     let loader = this.loadCtrl.create({
+  private loadRepoDetails(username: string, reponame: string) {
+    let loader = this.loadCtrl.create({
       content: 'Getting data...'
     });
 
-     loader.present().then(() => {
-          this.gitService.getRepoDetails(username,reponame)
-                     .subscribe(
-                       repo => {
-                            this.repo = repo;
-                            loader.dismiss();
-                       },
-                       error =>  {
-                         this.handelError(<any>error);
-                        },
-                );
-     });
+    loader.present().then(() => {
+      this.gitService.getRepoDetails(username, reponame)
+        .subscribe(
+        repo => {
+          this.repo = repo;
+          loader.dismiss();
+        },
+        error => {
+          this.handelError(<any>error);
+          loader.dismiss();
+        },
+      );
+    });
 
   }
 
-  private handelError(error:any){
-    //to do
+  private handelError(error: any) {
+    this.errorMsg = "Something went wront please try again.";
   }
 
-  profileTapped(username:string){
-    this.navCtrl.push(profile,{username:username});
+  profileTapped(username: string) {
+    this.navCtrl.push(profile, { username: username });
   }
 }

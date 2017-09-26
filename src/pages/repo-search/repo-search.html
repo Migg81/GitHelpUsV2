@@ -16,31 +16,32 @@
         </ion-item-divider>
       </ion-item>
       <ion-card-content (click)="repoTapped(repo.name,repo.owner.login)">
-        <h2 padding-top> {{repo.name}}</h2>
-      </ion-card-content>
-      <ion-card-content>
+        <h2> {{repo.name}}</h2>
         <p>
           {{repo.description === null ? "Not Available" : repo.description}}
         </p>
       </ion-card-content>
       <ion-row>
         <ion-col padding-left col-4>Language</ion-col>
-        <ion-col col-8 ion-text color="code">{{repo.language}}</ion-col>
+        <ion-col col-8 ion-text color="code">{{repo.language === null ? "Not Available" : repo.language}}</ion-col>
       </ion-row>
       <ion-row>
-        <ion-col>
-          <button ion-button icon-left clear color="iconshade">
+          <ion-col>
+            <button ion-button icon-left clear color="iconshade">
                 <ion-icon name="eye"></ion-icon>
-                <div>{{repo.watchers}} Watchers</div>
+                <div style="text-transform:none">{{repo.watchers}} Watchers</div>
             </button>
-        </ion-col>
-        <ion-col>
-          <button ion-button icon-left clear style="float:right" color="secondarydark">
+          </ion-col>
+          <ion-col>
+            <button ion-button icon-left clear style="float:right" color="secondarydark" >
                 <ion-icon name="open"></ion-icon>
-                <div>{{repo.open_issues}} Open Issues</div>
+                <div style="text-transform:none">{{repo.open_issues}} Issues</div>
             </button>
-        </ion-col>
-      </ion-row>
+          </ion-col>
+        </ion-row>
     </ion-card>
   </ion-list>
+  <ion-item no-lines>
+    <ion-label color="warm" text-wrap>{{errorMsg}}</ion-label>
+  </ion-item>
 </ion-content>

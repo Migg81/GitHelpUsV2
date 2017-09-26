@@ -40,5 +40,8 @@
       <ion-label floating>Bio</ion-label>
       <ion-textarea text-wrap type="text" readonly="true" value="{{user.bio?user.bio:'No Information Available'}}"></ion-textarea>
     </ion-item>
+    <ion-item>
+        <ion-label color="warm" text-wrap>{{errorMsg}}</ion-label>
+    </ion-item>
   </ion-list>
 </ion-content>
