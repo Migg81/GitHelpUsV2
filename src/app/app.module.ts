@@ -1,7 +1,7 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
-import {RepoDetailsPage, repositories,profile,LearnPage,EditProfilePage ,RepoSearchPage,LoginPage} from '../pages/pages';
+import {RepoDetailsPage, repositories,profile,LearnPage,EditProfilePage ,RepoSearchPage,LoginPage,GitRepoListingPagePage} from '../pages/pages';
 import { GitcBranchPage ,GitMargePage,GitAboutPage, GitclonePage,GitCommitPage,GitComparePage,GitInitPage,GitPullPage,GitPushPage,GitStatusPage,GitTrackingPage} from '../pages/modal-page/modal-pages';
 import { GitService,AuthenticateService } from '../service/shared';
 import { Network } from '@ionic-native/network';
@@ -28,7 +28,8 @@ import { StatusBar } from '@ionic-native/status-bar';
     EditProfilePage,
     RepoSearchPage,
     LoginPage,
-    RepoDetailsPage
+    RepoDetailsPage,
+    GitRepoListingPagePage
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -53,7 +54,8 @@ import { StatusBar } from '@ionic-native/status-bar';
     EditProfilePage,
     RepoSearchPage,
     LoginPage,
-    RepoDetailsPage
+    RepoDetailsPage,
+    GitRepoListingPagePage
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler},GitService,AuthenticateService,Network,Camera,SplashScreen,StatusBar]
 })

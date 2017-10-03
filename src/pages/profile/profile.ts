@@ -23,7 +23,6 @@ export class profile {
   }
 
   ionViewDidLoad() {
-    var ch = this.param.get("username");
     var username = this.param.get("username") === undefined ? localStorage.getItem("currentUser") : this.param.get("username");
     if (username === undefined) {
       this.navCtrl.setRoot(LoginPage);

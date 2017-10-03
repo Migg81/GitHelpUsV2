@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams ,LoadingController} from 'ionic-angular';
-import { profile,RepoDetailsPage } from '../pages';
+import { profile,RepoDetailsPage,GitRepoListingPagePage } from '../pages';
 import { Observable }        from 'rxjs/Observable';
 import { Subject }           from 'rxjs/Subject';
 // Observable class extensions
@@ -38,7 +38,7 @@ export class RepoSearchPage {
       .distinctUntilChanged()   // ignore if next search term is same as previous
       .switchMap(term => term   // switch to new observable each time the term changes
         // return the http search observable
-        ? this.gitService.repoSearchByUsers(term)
+        ? this.gitService.searchGitUsers(term)
         // or the observable of empty heroes if there was no search term
         : Observable.of<any[]>([]))
         .catch(error => {
@@ -48,23 +48,23 @@ export class RepoSearchPage {
 
   }
 
-  repoSearch(term: string): void {
+  repoSearch(ev: any): void {
 
-    let loader = this.loadCtrl.create({
+    let term = ev.target.value;
+
+   /* let loader = this.loadCtrl.create({
       content: 'Getting data...'
     });
 
     loader.present().then(() => {
     this.searchTerms.next(term);
     loader.dismiss();
-    });
+    }); */
+
+    this.searchTerms.next(term);
   }
 
-  profileTapped(username:string){
-    this.navCtrl.push(profile,{username:username});      
-  }
-
-  repoTapped(reponame:string,username:string){
-     this.navCtrl.push(RepoDetailsPage,{reponame:reponame,username:username});      
+  userTapped(username:string){
+    this.navCtrl.push(GitRepoListingPagePage,{username:username});      
   }
 }

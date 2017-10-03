@@ -1,5 +1,5 @@
-import { Injectable }    from '@angular/core';
-import { Headers, Http ,RequestOptions} from '@angular/http';
+import { Injectable } from '@angular/core';
+import { Headers, Http, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/catch';
@@ -9,70 +9,73 @@ import { Iuser } from '../models/model';
 
 @Injectable()
 export class GitService {
-  private headers = new Headers({'Content-Type': 'application/json'});
+  private headers = new Headers({ 'Content-Type': 'application/json' });
   private gitApIUrl = 'https://api.github.com/';  // URL to web api
   constructor(private http: Http) { }
-  user:Iuser;
-  getUsers(username:string): Promise<Iuser> {
-    var getuserUrl=this.gitApIUrl+"users/"+username;
+  user: Iuser;
+  getUsers(username: string): Promise<Iuser> {
+    var getuserUrl = this.gitApIUrl + "users/" + username;
     return this.http.get(getuserUrl)
-               .toPromise()
-               .then(response => response.json())
-               .catch(this.handleError);
+      .toPromise()
+      .then(response => response.json())
+      .catch(this.handleError);
   }
 
-  getRepos(username:string):Observable<any[]>{
-     var gitRepoUrl=this.gitApIUrl+"users/"+username+"/repos";
+  getRepos(username: string): Observable<any[]> {
+    var gitRepoUrl = this.gitApIUrl + "users/" + username + "/repos";
     return this.http.get(gitRepoUrl)
-              .map(this.extractData)
-              .catch(this.handleError);
+      .map(this.extractData)
+      .catch(this.handleError);
   }
 
-  getRepoDetails(username:string,repoName:string):Observable<any[]>{
-    var gitRepoUrl=this.gitApIUrl+"repos/"+username+"/"+ repoName;
+  getRepoDetails(username: string, repoName: string): Observable<any[]> {
+    var gitRepoUrl = this.gitApIUrl + "repos/" + username + "/" + repoName;
     return this.http.get(gitRepoUrl)
-              .map(this.extractData)
-              .catch(this.handleError);
+      .map(this.extractData)
+      .catch(this.handleError);
   }
 
   private extractData(res: any) {
     let result = res.json();
-    return result || { };
+    return result || {};
   }
 
   private handleError(error: any): Promise<any> {
     return Promise.reject(error.statusText || error);
   }
 
-  public updateUser(user: any,username:string,pswd:string): Observable<Iuser> {
-    
-    let updateUserUrl=this.gitApIUrl +"user"
+  public updateUser(user: any, username: string, pswd: string): Observable<Iuser> {
+
+    let updateUserUrl = this.gitApIUrl + "user"
     var credentials = btoa(username + ':' + pswd);
-    let headers = new Headers({ 'Content-Type': 'application/json'});
+    let headers = new Headers({ 'Content-Type': 'application/json' });
     headers.append('Authorization', 'Basic ' + credentials);
     let options = new RequestOptions({ headers: headers });
-    
+
 
     return this.http.patch(
-      updateUserUrl, 
+      updateUserUrl,
       JSON.stringify(
         {
           name: user.name,
-          email:user.email,
-          location:user.location,
-          bio:user.bio,
-          company:user.company
-        }), 
+          email: user.email,
+          location: user.location,
+          bio: user.bio,
+          company: user.company
+        }),
       options)
-        .map(this.extractData)
-        .catch(this.handleError);
+      .map(this.extractData)
+      .catch(this.handleError);
   }
 
-  repoSearchByUsers(username:string): Observable<Iuser[]> {
-    var getuserUrl=this.gitApIUrl+"users/"+username+"/repos";
+  searchGitUsers(username: string): Observable<Iuser[]> {
+    var getuserUrl = this.gitApIUrl + "search/users?q=" + username;
     return this.http.get(getuserUrl)
-               .map(response => response.json())
-               .catch(this.handleError);
+      .map(response => {
+        var returnData = response.json();
+        var returnItems = returnData.items;
+        return returnItems;
+      })
+      .catch(this.handleError);
   }
-
 }

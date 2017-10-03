@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { NavController, NavParams ,LoadingController,AlertController } from 'ionic-angular';
-import { GitService ,AuthenticateService} from '../../service/shared';
-import { RepoSearchPage,LoginPage ,RepoDetailsPage } from '../pages';
+import { NavController, NavParams, LoadingController, AlertController } from 'ionic-angular';
+import { GitService, AuthenticateService } from '../../service/shared';
+import { RepoSearchPage, LoginPage, RepoDetailsPage } from '../pages';
 import { Storage } from '@ionic/storage';
 
 @Component({
@@ -11,39 +11,40 @@ import { Storage } from '@ionic/storage';
 })
 export class repositories {
 
-  repos:any[];
-  errorMessage:any;
+  repos: any[];
+  errorMessage: any;
   selectedItem: any;
   icons: string[];
-  items: Array<{title: string, note: string, icon: string}>;
+  items: Array<{ title: string, note: string, icon: string }>;
 
   constructor(
-    public navCtrl: NavController, 
-    public gitService:GitService,
+    public navCtrl: NavController,
+    public gitService: GitService,
     public navParams: NavParams,
-    public loadCtrl:LoadingController,
+    public loadCtrl: LoadingController,
     public alertCtrl: AlertController,
-    public authService:AuthenticateService) {
+    public authService: AuthenticateService) {
   }
 
-  getRepoDetails(username:string){
+  getRepoDetails(username: string) {
 
-     let loader = this.loadCtrl.create({
+    let loader = this.loadCtrl.create({
       content: 'Getting data...'
     });
 
-     loader.present().then(() => {
-          this.gitService.getRepos(username)
-                     .subscribe(
-                       repos => {
-                            this.repos = repos;
-                            loader.dismiss();
-                       },
-                       error =>  {
-                         this.errorMessage = <any>error
-                        },
-                );
-     });
+    loader.present().then(() => {
+      this.gitService.getRepos(username)
+        .subscribe(
+        repos => {
+          this.repos = repos;
+          loader.dismiss();
+        },
+        error => {
+          this.errorMessage = <any>error;
+          loader.dismiss();
+        },
+      );
+    });
   }
 
   itemTapped(event, item) {
@@ -53,22 +54,20 @@ export class repositories {
     });
   }
 
-  ionViewDidLoad()
-  {
-    if(this.authService.checkIfUserlogedIn()){
-        var username=localStorage.getItem("currentUser")
-              this.getRepoDetails(username);
-      }
-      else{
-          this.navCtrl.setRoot(LoginPage);
-      }
+  ionViewDidLoad() {
+    if (this.authService.checkIfUserlogedIn()) {
+      var username = localStorage.getItem("currentUser")
+      this.getRepoDetails(username);
+    }
+    else {
+      this.navCtrl.setRoot(LoginPage);
+    }
   }
-  searchRepo()
-  {
+  searchRepo() {
     this.navCtrl.push(RepoSearchPage);
   }
-  repoNameTapped(username:string,reponame:string){
-     this.navCtrl.push(RepoDetailsPage,{username:username,reponame:reponame});
+  repoNameTapped(username: string, reponame: string) {
+    this.navCtrl.push(RepoDetailsPage, { username: username, reponame: reponame });
   }
 
   showRadio() {

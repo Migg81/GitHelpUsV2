@@ -1,47 +1,16 @@
 <ion-header>
   <ion-navbar color="primary">
-    <ion-searchbar animated="true" #searchBox id="search-box" (keyup)="repoSearch(searchBox.value)"></ion-searchbar>
+    <ion-searchbar animated="true" #searchBox id="search-box" (ionInput)="repoSearch($event)"
+     [showCancelButton]="shouldShowCancel">
+    </ion-searchbar>
   </ion-navbar>
 </ion-header>
-
 <ion-content>
-  <ion-list *ngFor="let repo of users | async">
-    <ion-card>
-      <ion-item (click)="profileTapped(repo.owner.login)">
-        <ion-avatar item-left>
-          <img src={{repo.owner.avatar_url}}>
-        </ion-avatar>
-        <ion-item-divider>
-          <h1 color="code">{{repo.owner.login}}</h1>
-        </ion-item-divider>
-      </ion-item>
-      <ion-card-content (click)="repoTapped(repo.name,repo.owner.login)">
-        <h2> {{repo.name}}</h2>
-        <p>
-          {{repo.description === null ? "Not Available" : repo.description}}
-        </p>
-      </ion-card-content>
-      <ion-row>
-        <ion-col padding-left col-4>Language</ion-col>
-        <ion-col col-8 ion-text color="code">{{repo.language === null ? "Not Available" : repo.language}}</ion-col>
-      </ion-row>
-      <ion-row>
-          <ion-col>
-            <button ion-button icon-left clear color="iconshade">
-                <ion-icon name="eye"></ion-icon>
-                <div style="text-transform:none">{{repo.watchers}} Watchers</div>
-            </button>
-          </ion-col>
-          <ion-col>
-            <button ion-button icon-left clear style="float:right" color="secondarydark" >
-                <ion-icon name="open"></ion-icon>
-                <div style="text-transform:none">{{repo.open_issues}} Issues</div>
-            </button>
-          </ion-col>
-        </ion-row>
-    </ion-card>
+  <ion-list>
+    <ion-item *ngFor="let repo of users | async">
+     <div (click)="userTapped(repo.login)">{{repo.login}}</div> 
+    </ion-item>
   </ion-list>
-  <ion-item no-lines>
-    <ion-label color="warm" text-wrap>{{errorMsg}}</ion-label>
-  </ion-item>
 </ion-content>
+
+
