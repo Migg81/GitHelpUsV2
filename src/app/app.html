@@ -11,11 +11,11 @@
         <p>{{user.email}}</p>
       </ion-item>
       <ion-item no-lines class="item-icon-left" menuClose (click)="logOut()" color="secondarydark">
-        <ion-icon name="ios-log-out-outline" item-left></ion-icon>
+        <ion-icon ios="ios-log-out" md="md-log-out" item-left></ion-icon>
         <div color="code" class="buttonNavPadding">LOGOUT</div>
       </ion-item>
       <ion-item no-lines menuClose *ngFor="let p of pages" (click)="openPage(p)">
-        <ion-icon color="code" name={{p.icon}} item-left></ion-icon>
+        <ion-icon color="code" ios={{p.ios}} md={{p.android}}  item-left></ion-icon>
         <div color="code" class="buttonNavPadding">{{p.title}}</div>
       </ion-item>
     </ion-list>

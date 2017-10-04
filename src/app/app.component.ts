@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform ,ToastController} from 'ionic-angular';
+import { Nav, Platform, ToastController } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { profile, LearnPage, repositories, LoginPage } from '../pages/pages';
@@ -18,7 +18,7 @@ export class MyApp {
   rootPage: any = LoginPage;
   user = {};
 
-  pages: Array<{ title: string, component: any, icon: string }>;
+  pages: Array<{ title: string, component: any, android: string, ios: string }>;
 
   constructor(
     public platform: Platform,
@@ -31,9 +31,9 @@ export class MyApp {
     this.initializeApp();
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Profile', component: profile, icon: 'ios-person-outline' },
-      { title: 'Repositories', component: repositories, icon: 'ios-albums-outline' },
-      { title: 'Learning', component: LearnPage, icon: 'ios-book-outline' }
+      { title: 'Profile', component: profile, android: 'md-person', ios: 'ios-person' },
+      { title: 'Repositories', component: repositories, android: 'md-albums', ios: 'ios-albums' },
+      { title: 'Learning', component: LearnPage, android: 'md-book', ios: 'ios-book' }
     ];
 
   }
@@ -60,7 +60,7 @@ export class MyApp {
   }
 
   getUsers() {
-    var currentUser=localStorage.getItem("currentUser")
+    var currentUser = localStorage.getItem("currentUser")
     this.gitService.getUsers(currentUser)
       .then(response => {
         this.user = <Iuser>response;
@@ -75,7 +75,7 @@ export class MyApp {
       duration: 3000
     }).present();
   }
-  
+
   logOut() {
     localStorage.removeItem("currentUser");
     this.nav.setRoot(LoginPage);
