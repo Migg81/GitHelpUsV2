@@ -14,9 +14,9 @@
       <ion-label floating>Password</ion-label>
       <ion-input type="password" [(ngModel)]="pswd"></ion-input>
     </ion-item>
-    <ion-item>
-      <ion-label color="warm" text-wrap>{{errorMsg}}</ion-label>
-    </ion-item>
   </ion-list>
   <button ion-button full (click)="userLogin()" color="secondary">Login</button>
+  <ion-item no-lines>
+    <ion-label color="warm" text-wrap>{{errorMsg}}</ion-label>
+  </ion-item>
 </ion-content>
