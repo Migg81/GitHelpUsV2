@@ -42,13 +42,22 @@ export class MyApp {
     this.platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
+      this.statusBar.styleDefault();
+      this.statusBar.overlaysWebView(true);
+      
+      // set status bar to white
+      
+      this.statusBar.backgroundColorByHexString('#008975');   
       this.network.onConnect().subscribe(data => {
         console.log(data)
         this.displayNetworkUpdate(data.type);
       }, error => console.error(error));
 
 
-      this.statusBar.styleDefault();
+      //this.statusBar.overlaysWebView(true);
+      
+      // set status bar to white
+     // this.statusBar.backgroundColorByHexString('#ffffff');
       this.splashscreen.hide();
       if (this.authService.checkIfUserlogedIn()) {
         this.getUsers();

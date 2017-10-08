@@ -6,8 +6,9 @@ import { GitcBranchPage ,GitMargePage,GitAboutPage, GitclonePage,GitCommitPage,G
 import { GitService,AuthenticateService } from '../service/shared';
 import { Network } from '@ionic-native/network';
 import { Camera } from '@ionic-native/camera';
-import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
+import { SplashScreen } from '@ionic-native/splash-screen';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -57,6 +58,14 @@ import { StatusBar } from '@ionic-native/status-bar';
     RepoDetailsPage,
     GitRepoListingPagePage
   ],
-  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler},GitService,AuthenticateService,Network,Camera,SplashScreen,StatusBar]
+  providers: [
+    GitService,
+    AuthenticateService,
+    Network,
+    Camera,
+    StatusBar,
+    SplashScreen,
+    {provide: ErrorHandler, useClass: IonicErrorHandler}
+  ]
 })
 export class AppModule {}
