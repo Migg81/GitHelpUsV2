@@ -4,10 +4,11 @@
     "homepage": "http://ionicframework.com/",
     "private": true,
     "scripts": {
+        "preinstall": "rm -rf node_modules && rm -f package-lock.json",
         "clean": "ionic-app-scripts clean",
         "build": "ionic-app-scripts build",
         "ionic:build": "ionic-app-scripts build",
-        "ionic:serve": "ionic-app-scripts serve"
+        "ionic:serve": "ionic-app-scripts serve",
     },
     "dependencies": {
         "@angular/common": "2.4.8",
