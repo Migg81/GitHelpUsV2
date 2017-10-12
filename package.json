@@ -1,5 +1,6 @@
 {
     "name": "ionic-hello-world",
+    "version": "0.0.1",
     "author": "Ionic Framework",
     "homepage": "http://ionicframework.com/",
     "private": true,
@@ -58,6 +59,10 @@
         "cordova-plugin-splashscreen",
         "ionic-plugin-keyboard"
     ],
+    "config": {
+        "ionic_bundler": "webpack",
+        "ionic_source_map_type": "#inline-source-map"
+    },
     "cordovaPlatforms": [],
     "description": "gitHelpUsv2: An Ionic project",
     "cordova": {

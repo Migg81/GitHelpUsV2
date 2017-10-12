@@ -56,7 +56,7 @@ export class EditProfilePage {
     }
   }
 
-  takePicture() {
+  takePicture() :void {
     let option: CameraOptions = {
       destinationType: this.camera.DestinationType.FILE_URI,
       sourceType: this.camera.PictureSourceType.CAMERA,
