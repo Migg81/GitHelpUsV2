@@ -2,7 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform, ToastController } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
-import { profile, LearnPage, repositories, LoginPage } from '../pages/pages';
+import { profile, LearnPage, repositories, LoginPage,ErrorPage } from '../pages/pages';
 import { GitService, AuthenticateService } from '../service/shared';
 import { Iuser } from '../models/model';
 import { Storage } from '@ionic/storage';
@@ -44,20 +44,27 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       this.statusBar.overlaysWebView(true);
-      
-      // set status bar to white
-      
-      this.statusBar.backgroundColorByHexString('#008975');   
-      this.network.onConnect().subscribe(data => {
-        console.log(data)
-        this.displayNetworkUpdate(data.type);
-      }, error => console.error(error));
 
+      this.statusBar.backgroundColorByHexString('#008975');
+      this.network.onConnect().subscribe(
+        data => {
+          this.nav.setRoot(LearnPage);
+          this.displayNetworkUpdate(data.type);
+        }, 
+        error => {
+          this.nav.setRoot(ErrorPage);
+        }
+      );
 
-      //this.statusBar.overlaysWebView(true);
-      
-      // set status bar to white
-     // this.statusBar.backgroundColorByHexString('#ffffff');
+      this.network.onDisconnect().subscribe(
+        data => {
+          this.nav.setRoot(ErrorPage);
+        }, 
+        error => {
+          this.nav.setRoot(ErrorPage);
+        }
+      );
+
       this.splashscreen.hide();
       if (this.authService.checkIfUserlogedIn()) {
         this.getUsers();
@@ -65,6 +72,7 @@ export class MyApp {
       else {
         this.nav.setRoot(LoginPage);
       }
+
     });
   }
 

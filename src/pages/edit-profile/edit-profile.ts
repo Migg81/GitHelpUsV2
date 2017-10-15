@@ -23,7 +23,17 @@ export class EditProfilePage {
     public loadingctrl: LoadingController,
     public gitService: GitService) { }
 
-  getUser(username: string) {
+  ionViewDidLoad() {
+    var username = this.navParams.get("username");
+    if (username === undefined) {
+      this.navCtrl.setRoot(LoginPage);
+    }
+    else {
+      this.getUser(username);
+    }
+  }
+
+  getUser(username: string) :void {
     let loader = this.loadingctrl.create({
       content: 'Getting data...'
     });
@@ -46,17 +56,7 @@ export class EditProfilePage {
     });
   }
 
-  ionViewDidLoad() {
-    var username = this.navParams.get("username");
-    if (username === undefined) {
-      this.navCtrl.setRoot(LoginPage);
-    }
-    else {
-      this.getUser(username);
-    }
-  }
-
-  takePicture() :void {
+  takePicture(): void {
     let option: CameraOptions = {
       destinationType: this.camera.DestinationType.FILE_URI,
       sourceType: this.camera.PictureSourceType.CAMERA,

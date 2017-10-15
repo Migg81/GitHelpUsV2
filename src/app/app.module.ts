@@ -2,7 +2,7 @@ import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
-import {RepoDetailsPage, repositories,profile,LearnPage,EditProfilePage ,RepoSearchPage,LoginPage,GitRepoListingPagePage} from '../pages/pages';
+import {RepoDetailsPage, repositories,profile,LearnPage,EditProfilePage ,RepoSearchPage,LoginPage,GitRepoListingPagePage,ErrorPage} from '../pages/pages';
 import { GitcBranchPage ,GitMargePage,GitAboutPage, GitclonePage,GitCommitPage,GitComparePage,GitInitPage,GitPullPage,GitPushPage,GitStatusPage,GitTrackingPage} from '../pages/modal-page/modal-pages';
 import { GitService,AuthenticateService } from '../service/shared';
 import { Network } from '@ionic-native/network';
@@ -32,7 +32,8 @@ import { HttpModule } from '@angular/http';
     RepoSearchPage,
     LoginPage,
     RepoDetailsPage,
-    GitRepoListingPagePage
+    GitRepoListingPagePage,
+    ErrorPage
   ],
   imports: [
     BrowserModule,
@@ -60,7 +61,8 @@ import { HttpModule } from '@angular/http';
     RepoSearchPage,
     LoginPage,
     RepoDetailsPage,
-    GitRepoListingPagePage
+    GitRepoListingPagePage,
+    ErrorPage
   ],
   providers: [
     GitService,

@@ -47,7 +47,6 @@ export class LoginPage {
   }
 
   verifyLogin() {
-    var jj = localStorage.getItem('currentUser');
     if (localStorage.getItem('currentUser')) {
       this.navCtrl.setRoot(LearnPage);
     }
