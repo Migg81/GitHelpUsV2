@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { AuthenticateService } from '../../service/shared';
-import { LearnPage } from '../pages';
+import { LearnPage,ErrorPage } from '../pages';
 import { Storage } from '@ionic/storage';
 /*
   Generated class for the Login page.
@@ -35,7 +35,10 @@ export class LoginPage {
         this.navCtrl.setRoot(LearnPage)
       }
     }).catch(error => {
-      if(error==="Unauthorized")
+      if (error === "Network Unavailable") {
+        this.redirectNetworkErrorPage();
+      }
+      else if(error==="Unauthorized")
       {
         this.errorMsg = "Your username or Password is not correct.";
       }
@@ -46,9 +49,13 @@ export class LoginPage {
     });
   }
 
-  verifyLogin() {
+  verifyLogin():void {
     if (localStorage.getItem('currentUser')) {
       this.navCtrl.setRoot(LearnPage);
     }
+  }
+
+  redirectNetworkErrorPage(): void {
+    this.navCtrl.push(ErrorPage);
   }
 }

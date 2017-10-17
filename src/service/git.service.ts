@@ -6,14 +6,26 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
 import { Iuser } from '../models/model';
+import { CheckNetworkProvider } from '../providers/check-network/check-network';
+import { AuthenticateService } from "./authenticate-service";
 
 @Injectable()
 export class GitService {
   private headers = new Headers({ 'Content-Type': 'application/json' });
   private gitApIUrl = 'https://api.github.com/';  // URL to web api
-  constructor(private http: Http) { }
+
+  constructor(
+    private http: Http,
+    public networkProvider: CheckNetworkProvider,
+    public authService: AuthenticateService) { }
+
   user: Iuser;
   getUsers(username: string): Promise<Iuser> {
+
+    if (this.networkProvider.CheckNetworkConnection() === "none") {
+      return Promise.reject("Network Unavailable");
+    }
+
     var getuserUrl = this.gitApIUrl + "users/" + username;
     return this.http.get(getuserUrl)
       .toPromise()
@@ -40,9 +52,6 @@ export class GitService {
     return result || {};
   }
 
-  private handleError(error: any): Promise<any> {
-    return Promise.reject(error.statusText || error);
-  }
 
   public updateUser(user: any, username: string, pswd: string): Observable<Iuser> {
 
@@ -78,4 +87,10 @@ export class GitService {
       })
       .catch(this.handleError);
   }
+
+  private handleError(error: any): Promise<any> {
+
+    return Promise.reject(error.statusText || error);
+  }
+
 }

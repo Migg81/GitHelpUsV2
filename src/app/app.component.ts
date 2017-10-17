@@ -1,8 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform, ToastController } from 'ionic-angular';
+import { Nav, Platform, ToastController, LoadingController } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
-import { profile, LearnPage, repositories, LoginPage,ErrorPage } from '../pages/pages';
+import { profile, LearnPage, repositories, LoginPage, ErrorPage } from '../pages/pages';
 import { GitService, AuthenticateService } from '../service/shared';
 import { Iuser } from '../models/model';
 import { Storage } from '@ionic/storage';
@@ -27,7 +27,8 @@ export class MyApp {
     private network: Network,
     public toastCtrl: ToastController,
     private splashscreen: SplashScreen,
-    public authService: AuthenticateService) {
+    public authService: AuthenticateService,
+    public loadingctrl: LoadingController) {
     this.initializeApp();
     // used for an example of ngFor and navigation
     this.pages = [
@@ -41,54 +42,72 @@ export class MyApp {
   initializeApp() {
     this.platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
+      // Here you can do any higher level native things you might need
       this.statusBar.styleDefault();
       this.statusBar.overlaysWebView(true);
-
       this.statusBar.backgroundColorByHexString('#008975');
+
       this.network.onConnect().subscribe(
         data => {
-          this.nav.setRoot(LearnPage);
           this.displayNetworkUpdate(data.type);
-        }, 
+        },
         error => {
-          this.nav.setRoot(ErrorPage);
+          // to do
         }
       );
 
       this.network.onDisconnect().subscribe(
         data => {
-          this.nav.setRoot(ErrorPage);
-        }, 
+          this.displayNetworkUpdate(data.type);
+        },
         error => {
-          this.nav.setRoot(ErrorPage);
+          // to do
         }
       );
 
       this.splashscreen.hide();
+
       if (this.authService.checkIfUserlogedIn()) {
-        this.getUsers();
+        var currentUser = localStorage.getItem("currentUser")
+        this.getUsers(currentUser);
+        this.nav.setRoot(LearnPage);
       }
       else {
         this.nav.setRoot(LoginPage);
       }
-
     });
   }
 
-  getUsers() {
-    var currentUser = localStorage.getItem("currentUser")
-    this.gitService.getUsers(currentUser)
-      .then(response => {
-        this.user = <Iuser>response;
-      });
-    console.log(this.user);
+
+  getUsers(username: string): void {
+
+    let loader = this.loadingctrl.create({
+      content: 'Getting data...'
+    });
+
+    loader.present().then(() => {
+      this.gitService.getUsers(username)
+        .then(response => {
+          this.user = <Iuser>response;
+          loader.dismiss();
+        }).catch(error => {
+          if (error === "Network Unavailable") {
+            this.nav.setRoot(LearnPage);
+          }
+          loader.dismiss();
+        });
+    });
   }
 
   displayNetworkUpdate(connectionState: string) {
-    let networkType = this.network.type
+    let networkType = this.network.type;
+    let msg: string = `You are now ${connectionState} via ${networkType}`;
+    if (networkType === "none") {
+      msg = "You are offline"
+    }
+
     this.toastCtrl.create({
-      message: `You are now ${connectionState} via ${networkType}`,
+      message: msg,
       duration: 3000
     }).present();
   }
@@ -103,4 +122,5 @@ export class MyApp {
     // we wouldn't want the back button to show in this scenario
     this.nav.setRoot(page.component);
   }
+
 }

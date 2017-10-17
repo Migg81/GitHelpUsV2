@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, LoadingController } from 'ionic-angular';
 import { GitService } from '../../service/shared';
 import { Iuser } from '../../models/model';
-import { EditProfilePage, LoginPage } from '../pages';
+import { EditProfilePage, LoginPage, ErrorPage } from '../pages';
 import { Storage } from '@ionic/storage';
 
 @Component({
@@ -32,7 +32,8 @@ export class profile {
     }
   }
 
-  getUsers(username: string) {
+
+  getUsers(username: string): void {
 
     let loader = this.loadingctrl.create({
       content: 'Getting data...'
@@ -52,7 +53,10 @@ export class profile {
 
           loader.dismiss();
         }).catch(error => {
-          if (error === "Unauthorized") {
+          if (error === "Network Unavailable") {
+            this.navCtrl.push(ErrorPage);
+          }
+          else if (error === "Unauthorized") {
             this.errorMsg = "Unauthorized access!";
           }
           else {
@@ -63,7 +67,7 @@ export class profile {
     });
   }
 
-  editProfile() {
+  editProfile(): void {
     this.navCtrl.push(EditProfilePage, { username: this.user.login });
   }
 
