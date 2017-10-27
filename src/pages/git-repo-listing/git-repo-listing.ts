@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, LoadingController } from 'ionic-angular';
 import { LoginPage, ErrorPage } from '../pages';
-import { profile, RepoDetailsPage } from '../pages';
+import { profile, RepoDetailsPage, LearnPage } from '../pages';
 import { GitService } from '../../service/shared';
 
 @Component({
@@ -51,6 +51,12 @@ export class GitRepoListingPagePage {
 
   private handelError(error: any) {
     if (error === "Network Unavailable") {
+      if (this.navCtrl.length() === 1) {
+        this.navCtrl.setRoot(LearnPage);
+      }
+      else {
+        this.navCtrl.pop();
+      }
       this.navCtrl.push(ErrorPage);
     }
     else {

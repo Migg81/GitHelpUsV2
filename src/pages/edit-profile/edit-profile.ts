@@ -3,7 +3,7 @@ import { NavController, NavParams, LoadingController } from 'ionic-angular';
 import { GitService } from '../../service/shared';
 import { Iuser } from '../../models/model';
 import { Camera, CameraOptions } from '@ionic-native/camera';
-import { LoginPage, ErrorPage } from '../pages';
+import { LoginPage, ErrorPage, LearnPage } from '../pages';
 
 @Component({
   selector: 'page-edit-profile',
@@ -45,7 +45,7 @@ export class EditProfilePage {
 
           loader.dismiss();
         }).catch((err) => {
-          this.handleError(err); 
+          this.handleError(err);
           loader.dismiss();
         });
     });
@@ -54,6 +54,12 @@ export class EditProfilePage {
   private handleError(error: any): void {
 
     if (error === "Network Unavailable") {
+      if (this.navCtrl.length() === 1) {
+        this.navCtrl.setRoot(LearnPage);
+      }
+      else {
+        this.navCtrl.pop();
+      }
       this.navCtrl.push(ErrorPage);
     }
     else if (error === "Unauthorized") {

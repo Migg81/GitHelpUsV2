@@ -43,6 +43,7 @@ export class RepoSearchPage {
         : Observable.of<any[]>([]))
       .catch(error => {
         if (error === "Network Unavailable") {
+          this.navCtrl.pop();
           this.navCtrl.push(ErrorPage);
         }
         else {

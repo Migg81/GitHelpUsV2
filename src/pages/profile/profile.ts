@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, LoadingController } from 'ionic-angular';
 import { GitService } from '../../service/shared';
 import { Iuser } from '../../models/model';
-import { EditProfilePage, LoginPage, ErrorPage } from '../pages';
+import { EditProfilePage, LoginPage, ErrorPage, LearnPage } from '../pages';
 import { Storage } from '@ionic/storage';
 
 @Component({
@@ -62,6 +62,12 @@ export class profile {
   private handleError(error: any): void {
 
     if (error === "Network Unavailable") {
+      if (this.navCtrl.length() === 1) {
+        this.navCtrl.setRoot(LearnPage);
+      }
+      else {
+        this.navCtrl.pop();
+      }
       this.navCtrl.push(ErrorPage);
     }
     else if (error === "Unauthorized") {

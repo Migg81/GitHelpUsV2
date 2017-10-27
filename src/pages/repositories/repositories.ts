@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { NavController, NavParams, LoadingController, AlertController } from 'ionic-angular';
 import { GitService, AuthenticateService } from '../../service/shared';
-import { RepoSearchPage, LoginPage, RepoDetailsPage, ErrorPage } from '../pages';
+import { RepoSearchPage, LoginPage, RepoDetailsPage, ErrorPage, LearnPage } from '../pages';
 import { Storage } from '@ionic/storage';
 
 @Component({
@@ -67,6 +67,12 @@ export class repositories {
         },
         error => {
           if (error === "Network Unavailable") {
+            if (this.navCtrl.length() === 1) {
+              this.navCtrl.setRoot(LearnPage);
+            }
+            else {
+              this.navCtrl.pop();
+            }
             this.navCtrl.push(ErrorPage);
           }
           else {
