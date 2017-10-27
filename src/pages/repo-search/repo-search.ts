@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams ,LoadingController} from 'ionic-angular';
-import { profile,RepoDetailsPage,GitRepoListingPagePage } from '../pages';
-import { Observable }        from 'rxjs/Observable';
-import { Subject }           from 'rxjs/Subject';
+import { NavController, NavParams, LoadingController } from 'ionic-angular';
+import { profile, RepoDetailsPage, GitRepoListingPagePage, ErrorPage } from '../pages';
+import { Observable } from 'rxjs/Observable';
+import { Subject } from 'rxjs/Subject';
 // Observable class extensions
 import 'rxjs/add/observable/of';
 // Observable operators
@@ -21,14 +21,14 @@ import { Iuser } from '../../models/model';
 export class RepoSearchPage {
 
   users: Observable<any[]>;
-  errorMsg:string;
+  errorMsg: string;
   private searchTerms = new Subject<string>();
 
   constructor(
-    public navCtrl: NavController, 
+    public navCtrl: NavController,
     public navParams: NavParams,
     public loadCtrl: LoadingController,
-    public gitService:GitService) {}
+    public gitService: GitService) { }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad RepoSearchPage');
@@ -41,9 +41,14 @@ export class RepoSearchPage {
         ? this.gitService.searchGitUsers(term)
         // or the observable of empty heroes if there was no search term
         : Observable.of<any[]>([]))
-        .catch(error => {
+      .catch(error => {
+        if (error === "Network Unavailable") {
+          this.navCtrl.push(ErrorPage);
+        }
+        else {
           this.errorMsg = "Something went wront please try again.";
-        return Observable.of<any[]>([]);
+          return Observable.of<any[]>([]);
+        }
       });
 
   }
@@ -52,19 +57,19 @@ export class RepoSearchPage {
 
     let term = ev.target.value;
 
-   /* let loader = this.loadCtrl.create({
-      content: 'Getting data...'
-    });
-
-    loader.present().then(() => {
-    this.searchTerms.next(term);
-    loader.dismiss();
-    }); */
+    /* let loader = this.loadCtrl.create({
+       content: 'Getting data...'
+     });
+ 
+     loader.present().then(() => {
+     this.searchTerms.next(term);
+     loader.dismiss();
+     }); */
 
     this.searchTerms.next(term);
   }
 
-  userTapped(username:string){
-    this.navCtrl.push(GitRepoListingPagePage,{username:username});      
+  userTapped(username: string) {
+    this.navCtrl.push(GitRepoListingPagePage, { username: username });
   }
 }

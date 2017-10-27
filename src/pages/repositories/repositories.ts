@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { NavController, NavParams, LoadingController, AlertController } from 'ionic-angular';
 import { GitService, AuthenticateService } from '../../service/shared';
-import { RepoSearchPage, LoginPage, RepoDetailsPage } from '../pages';
+import { RepoSearchPage, LoginPage, RepoDetailsPage, ErrorPage } from '../pages';
 import { Storage } from '@ionic/storage';
 
 @Component({
@@ -26,29 +26,9 @@ export class repositories {
     public authService: AuthenticateService) {
   }
 
-  getRepoDetails(username: string) {
 
-    let loader = this.loadCtrl.create({
-      content: 'Getting data...'
-    });
 
-    loader.present().then(() => {
-      this.gitService.getRepos(username)
-        .subscribe(
-        repos => {
-          this.repos = repos;
-          loader.dismiss();
-        },
-        error => {
-          this.errorMessage = <any>error;
-          loader.dismiss();
-        },
-      );
-    });
-  }
-
-  itemTapped(event, item) {
-    // That's right, we're pushing to ourselves!
+  itemTapped(event, item): void {
     this.navCtrl.push(repositories, {
       item: item
     });
@@ -63,32 +43,38 @@ export class repositories {
       this.navCtrl.setRoot(LoginPage);
     }
   }
+
   searchRepo() {
     this.navCtrl.push(RepoSearchPage);
   }
+
   repoNameTapped(username: string, reponame: string) {
     this.navCtrl.push(RepoDetailsPage, { username: username, reponame: reponame });
   }
 
-  showRadio() {
-    let alert = this.alertCtrl.create();
-    alert.setTitle('Lightsaber color');
+  getRepoDetails(username: string) {
 
-    alert.addInput({
-      type: 'img',
-      label: 'Blue',
-      value: 'blue',
-      checked: true
+    let loader = this.loadCtrl.create({
+      content: 'Getting data...'
     });
 
-    alert.addButton('Cancel');
-    alert.addButton({
-      text: 'OK',
-      handler: data => {
-        //this.testRadioOpen = false;
-        //this.testRadioResult = data;
-      }
+    loader.present().then(() => {
+      this.gitService.getRepos(username)
+        .subscribe(
+        repos => {
+          this.repos = repos;
+          loader.dismiss();
+        },
+        error => {
+          if (error === "Network Unavailable") {
+            this.navCtrl.push(ErrorPage);
+          }
+          else {
+            this.errorMessage = <any>error;
+          }
+          loader.dismiss();
+        },
+      );
     });
-    alert.present();
   }
 }

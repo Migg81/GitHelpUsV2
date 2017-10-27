@@ -1,14 +1,9 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, LoadingController } from 'ionic-angular';
 import { GitService } from '../../service/shared';
-import { profile } from '../pages';
+import { profile, ErrorPage } from '../pages';
 
-/*
-  Generated class for the RepoDetails page.
 
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
 @Component({
   selector: 'page-repo-details',
   templateUrl: 'repo-details.html'
@@ -51,8 +46,13 @@ export class RepoDetailsPage {
 
   }
 
-  private handelError(error: any) {
-    this.errorMsg = "Something went wront please try again.";
+  private handelError(error: any): void {
+    if (error === "Network Unavailable") {
+      this.navCtrl.push(ErrorPage);
+    }
+    else {
+      this.errorMsg = "Something went wront please try again.";
+    }
   }
 
   profileTapped(username: string) {

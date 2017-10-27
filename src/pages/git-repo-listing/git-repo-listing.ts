@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, LoadingController } from 'ionic-angular';
-import { LoginPage } from '../pages';
+import { LoginPage, ErrorPage } from '../pages';
 import { profile, RepoDetailsPage } from '../pages';
 import { GitService } from '../../service/shared';
 
@@ -50,7 +50,12 @@ export class GitRepoListingPagePage {
 
 
   private handelError(error: any) {
-    this.errorMsg = "Something went wront please try again.";
+    if (error === "Network Unavailable") {
+      this.navCtrl.push(ErrorPage);
+    }
+    else {
+      this.errorMsg = "Something went wront please try again.";
+    }
   }
 
   profileTapped(username: string) {

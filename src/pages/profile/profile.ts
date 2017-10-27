@@ -52,19 +52,24 @@ export class profile {
           }
 
           loader.dismiss();
-        }).catch(error => {
-          if (error === "Network Unavailable") {
-            this.navCtrl.push(ErrorPage);
-          }
-          else if (error === "Unauthorized") {
-            this.errorMsg = "Unauthorized access!";
-          }
-          else {
-            this.errorMsg = "Something went wront please try again."
-          }
+        }).catch((err) => {
+          this.handleError(err);
           loader.dismiss();
         });
     });
+  }
+
+  private handleError(error: any): void {
+
+    if (error === "Network Unavailable") {
+      this.navCtrl.push(ErrorPage);
+    }
+    else if (error === "Unauthorized") {
+      this.errorMsg = "Unauthorized access!";
+    }
+    else {
+      this.errorMsg = "Something went wront please try again."
+    }
   }
 
   editProfile(): void {

@@ -22,36 +22,26 @@ export class GitService {
   user: Iuser;
   getUsers(username: string): Promise<Iuser> {
 
-    if (this.networkProvider.CheckNetworkConnection() === "none") {
-      return Promise.reject("Network Unavailable");
-    }
-
     var getuserUrl = this.gitApIUrl + "users/" + username;
     return this.http.get(getuserUrl)
       .toPromise()
       .then(response => response.json())
-      .catch(this.handleError);
+      .catch((err) => { return this.handleError(err) });
   }
 
   getRepos(username: string): Observable<any[]> {
     var gitRepoUrl = this.gitApIUrl + "users/" + username + "/repos";
     return this.http.get(gitRepoUrl)
-      .map(this.extractData)
-      .catch(this.handleError);
+      .map(data => this.extractData(data))
+      .catch(error => this.handleError(error));
   }
 
   getRepoDetails(username: string, repoName: string): Observable<any[]> {
     var gitRepoUrl = this.gitApIUrl + "repos/" + username + "/" + repoName;
     return this.http.get(gitRepoUrl)
-      .map(this.extractData)
-      .catch(this.handleError);
+      .map(data => this.extractData(data))
+      .catch(error => this.handleError(error));
   }
-
-  private extractData(res: any) {
-    let result = res.json();
-    return result || {};
-  }
-
 
   public updateUser(user: any, username: string, pswd: string): Observable<Iuser> {
 
@@ -73,8 +63,8 @@ export class GitService {
           company: user.company
         }),
       options)
-      .map(this.extractData)
-      .catch(this.handleError);
+      .map(data => this.extractData(data))
+      .catch(error => this.handleError(error));
   }
 
   searchGitUsers(username: string): Observable<Iuser[]> {
@@ -85,12 +75,24 @@ export class GitService {
         var returnItems = returnData.items;
         return returnItems;
       })
-      .catch(this.handleError);
+      .catch(error => this.handleError(error));
   }
 
-  private handleError(error: any): Promise<any> {
 
-    return Promise.reject(error.statusText || error);
+  private extractData(res: any) {
+    let result = res.json();
+    return result || {};
+  }
+
+  handleError(error: any): Promise<any> {
+
+    if (this.networkProvider.CheckNetworkConnection() === "none") {
+      return Promise.reject("Network Unavailable");
+    }
+    else {
+      return Promise.reject(error.statusText || error);
+    }
+
   }
 
 }

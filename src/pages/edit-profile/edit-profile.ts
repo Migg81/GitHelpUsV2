@@ -3,7 +3,7 @@ import { NavController, NavParams, LoadingController } from 'ionic-angular';
 import { GitService } from '../../service/shared';
 import { Iuser } from '../../models/model';
 import { Camera, CameraOptions } from '@ionic-native/camera';
-import { LoginPage ,ErrorPage} from '../pages';
+import { LoginPage, ErrorPage } from '../pages';
 
 @Component({
   selector: 'page-edit-profile',
@@ -33,7 +33,7 @@ export class EditProfilePage {
     }
   }
 
-  getUser(username: string) :void {
+  getUser(username: string): void {
     let loader = this.loadingctrl.create({
       content: 'Getting data...'
     });
@@ -44,19 +44,24 @@ export class EditProfilePage {
           this.user = <Iuser>response;
 
           loader.dismiss();
-        }).catch(error => {
-          if (error === "Network Unavailable") {
-            this.navCtrl.push(ErrorPage);
-          }
-          else if (error === "Unauthorized") {
-            this.errorMsg = "Unauthorized access!";
-          }
-          else {
-            this.errorMsg = "Something went wront please try again."
-          }
+        }).catch((err) => {
+          this.handleError(err); 
           loader.dismiss();
         });
     });
+  }
+
+  private handleError(error: any): void {
+
+    if (error === "Network Unavailable") {
+      this.navCtrl.push(ErrorPage);
+    }
+    else if (error === "Unauthorized") {
+      this.errorMsg = "Unauthorized access!";
+    }
+    else {
+      this.errorMsg = "Something went wront please try again."
+    }
   }
 
   takePicture(): void {
@@ -87,7 +92,7 @@ export class EditProfilePage {
         if (error === "Network Unavailable") {
           this.navCtrl.push(ErrorPage);
         }
-        if (error === "Unauthorized") {
+        else if (error === "Unauthorized") {
           this.errorMsg = "Unauthorized access!";
         }
         else {
