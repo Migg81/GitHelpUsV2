@@ -57,7 +57,7 @@ export class RepoDetailsPage {
       this.navCtrl.push(ErrorPage);
     }
     else {
-      this.errorMsg = "Something went wront please try again.";
+      this.errorMsg = "Something went wrong please try again.";
     }
   }
 

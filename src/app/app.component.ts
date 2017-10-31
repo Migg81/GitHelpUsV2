@@ -15,7 +15,7 @@ import { Network } from '@ionic-native/network';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = LoginPage;
+  rootPage: any = LearnPage;
   user = {};
 
   pages: Array<{ title: string, component: any, android: string, ios: string }>;
@@ -45,7 +45,7 @@ export class MyApp {
       // Here you can do any higher level native things you might need
       this.statusBar.styleDefault();
       this.statusBar.overlaysWebView(true);
-      this.statusBar.backgroundColorByHexString('#008975');
+      this.statusBar.backgroundColorByHexString('#6a0080');
 
       this.network.onConnect().subscribe(
         data => {

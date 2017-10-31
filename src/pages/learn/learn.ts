@@ -1,14 +1,10 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, ToastController } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 import { ModalController } from 'ionic-angular';
 import { GitcBranchPage, GitMargePage, GitAboutPage, GitclonePage, GitCommitPage, GitComparePage, GitInitPage, GitPullPage, GitPushPage, GitStatusPage, GitTrackingPage } from '../modal-page/modal-pages';
-import { Network } from '@ionic-native/network';
-/*
-  Generated class for the Learn page.
 
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
+import { LoginPage } from '../pages';
+
 @Component({
   selector: 'page-learn',
   templateUrl: 'learn.html'
@@ -18,12 +14,14 @@ export class LearnPage {
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    private toast: ToastController, private network: Network,
     public modalCtrl: ModalController) { }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad LearnPage');
-    let networkType = this.network.type;
+
+    var username = this.navParams.get("username") === undefined ? localStorage.getItem("currentUser") : this.navParams.get("username");
+    if (username === undefined) {
+      this.navCtrl.setRoot(LoginPage);
+    }
   }
 
   

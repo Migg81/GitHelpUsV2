@@ -69,7 +69,6 @@ import { CheckNetworkProvider } from '../providers/check-network/check-network';
   providers: [
     GitService,
     CheckNetworkProvider,
-    
     AuthenticateService,
     Network,
     Camera,

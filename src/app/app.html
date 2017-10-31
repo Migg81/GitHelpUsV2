@@ -14,9 +14,9 @@
         <ion-icon ios="ios-log-out" md="md-log-out" item-left></ion-icon>
         <div color="code" class="buttonNavPadding">LOGOUT</div>
       </ion-item>
-      <ion-item no-lines menuClose *ngFor="let p of pages" (click)="openPage(p)">
+      <ion-item no-lines menuClose *ngFor="let p of pages" (click)="openPage(p)" >
         <ion-icon color="code" ios={{p.ios}} md={{p.android}}  item-left></ion-icon>
-        <div color="code" class="buttonNavPadding">{{p.title}}</div>
+        <div class="buttonNavPadding">{{p.title}}</div>
       </ion-item>
     </ion-list>
   </ion-content>
