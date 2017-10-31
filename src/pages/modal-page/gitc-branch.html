@@ -12,83 +12,83 @@
 
 <ion-content>
   <ion-item-divider color="primarylight">
-    <h2 color="code">Git Branching</h2>
+    <h2 ion-text color="primaryTextDark">Git Branching</h2>
     <p text-wrap>Nearly every VCS has some form of branching support. Branching means you diverge from the main line of development and
       continue to do work without messing with that main line. In many VCS tools, this is a somewhat expensive process, often
       requiring you to create a new copy of your source code directory, which can take a long time for large projects.</p>
   </ion-item-divider>
   <ion-item no-lines>
-    <h2 color="code">Creating a New Branch</h2>
+    <h2 ion-text  color="code">Creating a New Branch</h2>
     <ion-item-divider color="light">
-      <p color="secondarydarkText">$ git branch testing</p>
+      <p ion-text color="secondarydarkText">$ git branch testing</p>
     </ion-item-divider>
   </ion-item>
   <ion-item no-lines>
-    <h2 color="code">Switching Branches</h2>
+    <h2 ion-text color="code">Switching Branches</h2>
     <p text-wrap>To switch to an existing branch, you run the git checkout command. Let’s switch to the new testing branch:</p>
     <ion-item-divider color="light">
-      <p color="secondarydarkText">$ git checkout testing</p>
+      <p ion-text color="secondarydarkText">$ git checkout testing</p>
     </ion-item-divider>
   </ion-item>
   <ion-item no-lines>
-    <h2 color="code" text-wrap>Add a new remote for your branch</h2>
+    <h2 ion-text color="code" text-wrap>Add a new remote for your branch</h2>
     <ion-item-divider color="light">
-      <p color="secondarydarkText">
+      <p ion-text color="secondarydarkText">
         $ git remote add [name_of_your_remote]
       </p>
     </ion-item-divider>
   </ion-item>
   <ion-item no-lines>
-    <h2 color="code" text-wrap>Push changes from your commit into your branch</h2>
+    <h2 ion-text color="code" text-wrap>Push changes from your commit into your branch</h2>
     <ion-item-divider text-wrap color="light">
-      <p color="secondarydarkText">
+      <p ion-text color="secondarydarkText">
         $ git push [name_of_your_new_remote] [name_of_your_branch]
       </p>
     </ion-item-divider>
   </ion-item>
   <ion-item no-lines>
-    <h2 color="code" text-wrap>Update your branch when the original branch from official repository has been updated</h2>
+    <h2 ion-text color="code" text-wrap>Update your branch when the original branch from official repository has been updated</h2>
     <ion-item-divider text-wrap color="light">
-      <p color="secondarydarkText">$ git fetch [name_of_your_remote]</p>
+      <p ion-text color="secondarydarkText">$ git fetch [name_of_your_remote]</p>
     </ion-item-divider>
   </ion-item>
   <ion-item no-lines>
-    <h2 color="code" text-wrap>Then you need to apply to merge changes, if your branch is derivated from develop you need to do</h2>
+    <h2 ion-text  color="code" text-wrap>Then you need to apply to merge changes, if your branch is derivated from develop you need to do</h2>
     <ion-item-divider text-wrap color="light">
-      <p color="secondarydarkText">$ git merge [name_of_your_remote]/develop</p>
+      <p ion-text color="secondarydarkText">$ git merge [name_of_your_remote]/develop</p>
     </ion-item-divider>
   </ion-item>
   <ion-item no-lines>
-    <h2 color="code" text-wrap>Delete a branch on your local filesystem</h2>
+    <h2 ion-text color="code" text-wrap>Delete a branch on your local filesystem</h2>
     <ion-item-divider text-wrap color="light">
-      <p color="secondarydarkText">
+      <p ion-text color="secondarydarkText">
         $ git branch -d [name_of_your_new_branch]
       </p>
     </ion-item-divider>
   </ion-item>
   <ion-item no-lines>
-    <h2 color="code" text-wrap>To force the deletion of local branch on your filesystem </h2>
+    <h2 ion-text color="code" text-wrap>To force the deletion of local branch on your filesystem </h2>
     <ion-item-divider text-wrap color="light">
-      <p color="secondarydarkText">$ git branch -D [name_of_your_new_branch]</p>
+      <p ion-text color="secondarydarkText">$ git branch -D [name_of_your_new_branch]</p>
     </ion-item-divider>
   </ion-item>
   <ion-item no-lines>
-    <h2 color="code">Delete the branch on github</h2>
+    <h2 ion-text color="code">Delete the branch on github</h2>
     <ion-item-divider text-wrap color="light">
-      <p color="secondarydarkText">
+      <p ion-text color="secondarydarkText">
         $ git push origin :[name_of_your_new_branch]
       </p>
     </ion-item-divider>
   </ion-item>
   <ion-item no-lines>
-    <h2 color="code">Git Checkout</h2>
+    <h2 ion-text color="code">Git Checkout</h2>
     <p text-wrap>Updates files in the working tree to match the version in the index or the specified tree. If no paths are given, git
       checkout will also update HEAD to set the specified branch as the current branch.</p>
   </ion-item>
   <ion-item no-lines>
-    <h2 color="code">Checkout</h2>
+    <h2 ion-text color="code">Checkout</h2>
     <ion-item-divider color="light">
-      <p color="secondarydarkText">$ git checkout branch name</p>
+      <p ion-text color="secondarydarkText">$ git checkout branch name</p>
     </ion-item-divider>
   </ion-item>
 </ion-content>

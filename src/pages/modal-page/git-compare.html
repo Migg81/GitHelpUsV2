@@ -11,22 +11,22 @@
 
 <ion-content>
   <ion-item-divider color="primarylight">
-    <h2 color="code">git-diff - Show changes between commits, commit and working tree, etc</h2>
+    <h2 ion-text text-wrap >git-diff - Show changes between commits, commit and working tree, etc</h2>
     <p text-wrap>
       Show changes between the working tree and the index or a tree, changes between the index and a tree, changes between two
       trees, changes between two blob objects, or changes between two files on disk.
     </p>
   </ion-item-divider>
   <ion-item no-lines>
-    <h2 color="code" text-wrap>If you want to see what you haven't git added yet</h2>
+    <h2 ion-text  color="code" text-wrap>If you want to see what you haven't git added yet</h2>
     <ion-item-divider text-wrap color="light">
-      <p color="secondarydarkText">
+      <p ion-text color="secondarydarkText">
         $ git diff myfile.txt
       </p>
     </ion-item-divider>
   </ion-item>
   <ion-item-divider>
-    <h2 color="code" text-wrap>If you want to see already-added changes</h2>
-    <p padding-top padding-left text-wrap color="secondarydarkText">git diff --cached myfile.txt</p>
+    <h2 ion-text color="code" text-wrap>If you want to see already-added changes</h2>
+    <p padding-top padding-left text-wrap ion-text  color="secondarydarkText">git diff --cached myfile.txt</p>
   </ion-item-divider>
 </ion-content>

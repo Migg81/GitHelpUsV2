@@ -12,16 +12,16 @@
 
 <ion-content>
   <ion-item-divider color="primarylight">
-    <h2 color="code">Checking the Status of Your Files</h2>
+    <h2 ion-text color="primaryTextDark">Checking the Status of Your Files</h2>
     <p text-wrap>
       The main tool you use to determine which files are in which state is the git status command. If you run this command directly
       after a clone, you should see something like this:
     </p>
   </ion-item-divider>
   <ion-item no-lines>
-    <h2 color="code">Git Status</h2>
+    <h2 ion-text color="code">Git Status</h2>
     <ion-item-divider text-wrap color="light">
-      <p color="secondarydarkText">$ git status On branch master</p>
+      <p ion-text color="secondarydarkText">$ git status On branch master</p>
       <p>Your branch is up-to-date with 'origin/master'. nothing to commit, working directory clean</p>
     </ion-item-divider>
   </ion-item>
@@ -34,13 +34,13 @@
     </p>
   </ion-item>
   <ion-item no-lines>
-    <h2 color="code">Short Status</h2>
+    <h2 ion-text color="code">Short Status</h2>
     <p text-wrap>While the git status output is pretty comprehensive, it’s also quite wordy. Git also has a short status flag so you can
       see your changes in a more compact way. If you run git status -s or git status --short you get a far more simplified
       output from the command:
     </p>
     <ion-item no-lines>
-      <p color="secondarydarkText">$ git status -s M README MM Rakefile A lib/git.rb M lib/simplegit.rb ?? LICENSE.txt</p>
+      <p ion-text color="secondarydarkText">$ git status -s M README MM Rakefile A lib/git.rb M lib/simplegit.rb ?? LICENSE.txt</p>
     </ion-item>
   </ion-item>
 </ion-content>
